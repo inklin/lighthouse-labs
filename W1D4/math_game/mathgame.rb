@@ -1,8 +1,8 @@
 class MathGame
   def initialize
     @solution = 0
-    @player1 = Player.new("Player 1")
-    @player2 = Player.new("Player 2")
+    @player1 = Player.new(:blue)
+    @player2 = Player.new(:cyan)
     @current_player = @player1
   end
 
@@ -12,9 +12,9 @@ class MathGame
   end
 
   def get_names
-    puts "#{@player1.name}: What is your name?"
+    puts_color("Player 1: What is your name?", @player1.color)
     @player1.name = gets.chomp
-    puts "#{@player2.name}: What is your name?"
+    puts_color("Player 2: What is your name?", @player2.color)
     @player2.name = gets.chomp
   end
 
@@ -64,7 +64,7 @@ class MathGame
     num2 = rand(number_limit)
     operator = generate_operator
 
-    puts "#{@current_player.name}: What is #{num1} #{operator} #{num2} ?"
+    puts_color("#{@current_player.name}: What is #{num1} #{operator} #{num2} ?", @current_player.color)
     calculate_solution(num1, num2, operator)
   end
 
@@ -108,7 +108,7 @@ class MathGame
   end
 
   def show_winner
-    puts "The winner is #{@current_player.name.upcase}!!"
+    put_color("The winner is #{@current_player.name.upcase}!!", :green)
     show_scores
   end
 
@@ -116,5 +116,9 @@ class MathGame
     puts "Want to play again? (y/n)"
     answer = gets.chomp.downcase
     answer.include?('y') || answer.include?('yes')
+  end
+
+  def puts_color(text, color)
+    puts text.colorize(color)
   end
 end

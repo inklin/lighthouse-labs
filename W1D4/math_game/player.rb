@@ -1,10 +1,11 @@
 class Player
-  attr_accessor :name, :lives, :score
+  attr_accessor :name, :lives, :score, :color
 
-  def initialize(name)
-    @name = name
+  def initialize(color)
+    @name = ""
     @lives = 3
     @score = 0
+    @color = color
   end
 
   def dead?
