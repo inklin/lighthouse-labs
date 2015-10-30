@@ -3,8 +3,8 @@ class MathGame
 
   def initialize
     @solution = 0
-    @player1 = Player.new(:light_blue)
-    @player2 = Player.new(:light_cyan)
+    @player1 = Player.new(:light_white)
+    @player2 = Player.new(:light_magenta)
     @current_player = @player1
   end
 
@@ -24,8 +24,7 @@ class MathGame
     while !game_over?
       generate_question
       check_answer(get_player_answer)
-      show_scores
-      switch_players
+      switch_players unless game_over?
     end
     show_final_stats
     play if replay?
@@ -37,12 +36,9 @@ class MathGame
   end
 
   def determine_winner
-    if @player1.lives == 0
-      winner = @player2
-    else
-      winner = @player1
-    end
+    winner = (@player1.lives == 0) ? @player2 : @player1
     puts_color("The winner is #{winner.name.upcase}!".upcase, :light_yellow)
+    show_scores
   end
 
   def reset_stats
@@ -79,6 +75,7 @@ class MathGame
     if (@solution != answer)
       @current_player.minus_life
       puts_color("So close! The answer is #{@solution}", :light_red)
+      show_lives
     else
       @current_player.add_score
       puts_color("Correct!", :light_green)
@@ -90,6 +87,11 @@ class MathGame
     @player2.show_score
   end
 
+  def show_lives
+    @player1.show_life
+    @player2.show_life
+  end
+
   def switch_players
     if self.current_player == @player1
       self.current_player = @player2
@@ -99,9 +101,8 @@ class MathGame
   end
 
   def replay?
-    puts "Want to play again? (y/n)"
-    answer = gets.chomp.downcase
-    answer.include?('y') || answer.include?('yes')
+    puts_color("Want to play again? (y/n)", :light_yellow)
+    gets.chomp.downcase == "y"
   end
 
   def puts_color(text, color)

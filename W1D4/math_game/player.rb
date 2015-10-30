@@ -24,4 +24,8 @@ class Player
   def show_score
     puts "#{self.name}'s score: #{self.score}."
   end
+
+  def show_life
+    puts "#{self.name}'s remaining lives: #{self.lives}"
+  end
 end
