@@ -1,0 +1,23 @@
+# initialize player1 score to zero
+# initialize player2 score to zero
+
+# start game
+
+# set current player to player 1
+
+# play until game over
+#   generate question
+#   print question
+#   get player answer
+#   evaluate player answer
+#   if answer is wrong
+#     subtract life from current player
+#     if current player dead?
+#       print other player score
+#       print other player as winner
+#     else
+#       show both player scores
+#     end
+#   end
+#   switch player
+# end
