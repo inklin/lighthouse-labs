@@ -19,5 +19,5 @@
 #       show both player scores
 #     end
 #   end
-#   switch player
+# switch player
 # end

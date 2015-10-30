@@ -1,8 +1,10 @@
 class MathGame
+  attr_accessor :current_player, :solution
+
   def initialize
     @solution = 0
-    @player1 = Player.new(:blue)
-    @player2 = Player.new(:cyan)
+    @player1 = Player.new(:light_blue)
+    @player2 = Player.new(:light_cyan)
     @current_player = @player1
   end
 
@@ -19,26 +21,28 @@ class MathGame
   end
 
   def play
-    playing = true
-
-    while playing
+    while !game_over?
       generate_question
       check_answer(get_player_answer)
-
-      if game_over?
-        puts "GAME OVER"
-        switch_players
-        show_winner
-        if replay?
-          reset_stats
-        else
-          playing = false
-        end
-      else
-        show_scores
-        switch_players
-      end
+      show_scores
+      switch_players
     end
+    show_final_stats
+    play if replay?
+  end
+
+  def show_final_stats
+    puts_color("GAME OVER", :light_yellow)
+    determine_winner
+  end
+
+  def determine_winner
+    if @player1.lives == 0
+      winner = @player2
+    else
+      winner = @player1
+    end
+    puts_color("The winner is #{winner.name.upcase}!".upcase, :light_yellow)
   end
 
   def reset_stats
@@ -56,27 +60,14 @@ class MathGame
     number_limit = 20
     num1 = rand(number_limit)
     num2 = rand(number_limit)
-    operator = generate_operator
+    operator = [:+, :-, :*].sample
+    calculate_solution(num1, num2, operator)
 
     puts_color("#{@current_player.name}: What is #{num1} #{operator} #{num2} ?", @current_player.color)
-    calculate_solution(num1, num2, operator)
   end
 
   def calculate_solution(num1, num2, operator)
-    case operator
-    when "+"
-      @solution = num1 + num2
-    when "-"
-      @solution = num1 - num2
-    when "*"
-      @solution = num1 * num2
-    end
-  end
-
-  def generate_operator
-    operators = ['+', '-', '*']
-    rand_operator_index = rand(operators.length)
-    operator = operators[rand_operator_index]
+    self.solution = num1.send(operator, num2)
   end
 
   def get_player_answer
@@ -87,10 +78,10 @@ class MathGame
   def check_answer(answer)
     if (@solution != answer)
       @current_player.minus_life
-      puts_color("So close! The answer is #{@solution}", :red)
+      puts_color("So close! The answer is #{@solution}", :light_red)
     else
       @current_player.add_score
-      puts_color("Correct!", :green)
+      puts_color("Correct!", :light_green)
     end
   end
 
@@ -100,16 +91,11 @@ class MathGame
   end
 
   def switch_players
-    if @current_player == @player1
-      @current_player = @player2
+    if self.current_player == @player1
+      self.current_player = @player2
     else
-      @current_player = @player1
+      self.current_player = @player1
     end
-  end
-
-  def show_winner
-    put_color("The winner is #{@current_player.name.upcase}!!", :green)
-    show_scores
   end
 
   def replay?
@@ -119,6 +105,6 @@ class MathGame
   end
 
   def puts_color(text, color)
-    puts text.colorize(color)
+    puts text.colorize(color).on_black
   end
 end

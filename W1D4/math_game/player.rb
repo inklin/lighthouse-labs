@@ -1,5 +1,6 @@
 class Player
-  attr_accessor :name, :lives, :score, :color
+  attr_accessor :name, :lives, :score
+  attr_reader :color
 
   def initialize(color)
     @name = ""
@@ -9,19 +10,18 @@ class Player
   end
 
   def dead?
-    @lives <= 0
+    self.lives <= 0
   end
 
   def minus_life
-    @lives -= 1
+    self.lives -= 1
   end
 
   def add_score
-    @score += 1
+    self.score += 1
   end
 
   def show_score
-    puts "#{@name}'s score: #{@score}."
+    puts "#{self.name}'s score: #{self.score}."
   end
-
 end
