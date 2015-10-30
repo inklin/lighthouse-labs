@@ -1,28 +1,3 @@
-# initialize player1 score to zero
-# initialize player2 score to zero
-
-# start game
-
-# set current player to player 1
-
-# play until game over
-#   generate question
-#   print question
-#   get player answer
-#   evaluate player answer
-#   if answer is wrong
-#     subtract life from current player
-#     if current player dead?
-#       print other player score
-#       print other player as winner
-#       game over
-#     else
-#       show both player scores
-#     end
-#   end
-#   switch player
-# end
-
 class MathGame
   def initialize
     @solution = 0
@@ -91,7 +66,6 @@ class MathGame
 
     puts "#{@current_player.name}: What is #{num1} #{operator} #{num2} ?"
     calculate_solution(num1, num2, operator)
-    #puts "The solution is #{@solution}"
   end
 
   def calculate_solution(num1, num2, operator)
@@ -144,35 +118,3 @@ class MathGame
     answer.include?('y') || answer.include?('yes')
   end
 end
-
-class Player
-  attr_accessor :name, :lives, :score
-
-  def initialize(name)
-    @name = name
-    @lives = 3
-    @score = 0
-  end
-
-  def dead?
-    @lives <= 0
-  end
-
-  def minus_life
-    @lives -= 1
-  end
-
-  def add_score
-    @score += 1
-  end
-
-  def show_score
-    puts "#{@name}'s score: #{@score}."
-  end
-
-end
-
-
-
-new_game = MathGame.new()
-new_game.start_game
