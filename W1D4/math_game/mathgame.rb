@@ -23,13 +23,7 @@ class MathGame
 
     while playing
       generate_question
-      answer = get_player_answer
-
-      if answer_wrong?(answer)
-        @current_player.minus_life
-      else
-        @current_player.add_score
-      end
+      check_answer(get_player_answer)
 
       if game_over?
         puts "GAME OVER"
@@ -90,8 +84,14 @@ class MathGame
     gets.chomp.to_i
   end
 
-  def answer_wrong?(answer)
-    @solution != answer
+  def check_answer(answer)
+    if (@solution != answer)
+      @current_player.minus_life
+      puts_color("So close! The answer is #{@solution}", :red)
+    else
+      @current_player.add_score
+      puts_color("Correct!", :green)
+    end
   end
 
   def show_scores
