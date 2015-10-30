@@ -21,21 +21,18 @@ class MathGame
   end
 
   def play
+    reset_stats
     while !game_over?
       generate_question
       check_answer(get_player_answer)
       switch_players unless game_over?
     end
-    show_final_stats
+    determine_winner
     play if replay?
   end
 
-  def show_final_stats
-    puts_color("GAME OVER", :light_yellow)
-    determine_winner
-  end
-
   def determine_winner
+    puts_color("GAME OVER", :light_yellow)
     winner = (@player1.lives == 0) ? @player2 : @player1
     puts_color("The winner is #{winner.name.upcase}!".upcase, :light_yellow)
     show_scores
@@ -72,7 +69,7 @@ class MathGame
   end
 
   def check_answer(answer)
-    if (@solution != answer)
+    if (self.solution != answer)
       @current_player.minus_life
       puts_color("So close! The answer is #{@solution}", :light_red)
       show_lives
