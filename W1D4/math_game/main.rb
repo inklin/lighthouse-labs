@@ -1,5 +1,8 @@
+require './tournament.rb'
 require './mathgame'
 require './player'
+require './question'
+require './turn'
 require 'colorize'
 
-MathGame.new.start_game
+Tournament.new.start
