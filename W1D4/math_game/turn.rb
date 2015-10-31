@@ -9,6 +9,8 @@ class Turn
     puts "#{@player.name}: #{@question.get_question}".colorize(@player.color).on_black
     answer = @player.get_answer
 
+    exit(0) if answer.include?("quit")
+    
     if @question.correct?(answer)
       @player.add_score
       puts "Correct!".colorize(:light_green).on_black

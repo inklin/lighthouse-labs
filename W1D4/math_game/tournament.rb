@@ -1,14 +1,12 @@
 class Tournament
   def initialize
-    @player1 = Player.new(:light_white)
-    @player2 = Player.new(:light_magenta)
+    @player1 = Player.new("1", :light_white)
+    @player2 = Player.new("2", :light_magenta)
   end
 
   def get_names
-    puts "Player 1: What is your name?".colorize(@player1.color).on_black
-    @player1.name = gets.chomp
-    puts "Player 2: What is your name?".colorize(@player2.color).on_black
-    @player2.name = gets.chomp
+    get_name(@player1)
+    get_name(@player2)
   end
 
   def start
@@ -24,6 +22,11 @@ class Tournament
   def replay?
     puts "Want to play again? (y/n)".colorize(:light_yellow).on_black
     gets.chomp.downcase == "y"
+  end
+
+  def get_name(player)
+    puts "Player #{player.name}: What is your name?".colorize(player.color).on_black
+    player.name = gets.chomp
   end
 
 end

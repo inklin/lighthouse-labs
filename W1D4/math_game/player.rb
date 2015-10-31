@@ -2,8 +2,8 @@ class Player
   attr_reader :color, :lives
   attr_accessor :name
 
-  def initialize(color)
-    @name = ""
+  def initialize(name, color)
+    @name = name
     @lives = 3
     @score = 0
     @color = color
@@ -26,7 +26,7 @@ class Player
   end
 
   def show_life
-    puts "You have #{@lives} remaining lives."
+    puts "#{@name}: You have #{@lives} remaining lives."
   end
 
   def get_answer
