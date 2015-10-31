@@ -19,7 +19,7 @@ class MathGame
   private 
 
   def determine_winner
-    puts "GAME OVER".colorize(:light_yellow)
+    puts "GAME OVER".colorize(:light_yellow).on_black
     winner = (@player1.lives == 0) ? @player2 : @player1
     puts "The winner is #{winner.name.upcase}!".upcase.colorize(:light_yellow).on_black
     show_scores
@@ -37,11 +37,6 @@ class MathGame
   def show_scores
     @player1.show_score
     @player2.show_score
-  end
-
-  def show_lives
-    @player1.show_life
-    @player2.show_life
   end
 
   def switch_players

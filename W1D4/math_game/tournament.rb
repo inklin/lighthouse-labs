@@ -22,7 +22,7 @@ class Tournament
   end
 
   def replay?
-    puts "Want to play again? (y/n)".(:light_yellow)
+    puts "Want to play again? (y/n)".colorize(:light_yellow).on_black
     gets.chomp.downcase == "y"
   end
 

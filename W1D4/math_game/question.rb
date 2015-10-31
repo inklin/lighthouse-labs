@@ -1,6 +1,6 @@
 class Question
   attr_reader :solution
-  
+
   def initialize
     @num1 = rand(20)
     @num2 = rand(20)

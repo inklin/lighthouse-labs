@@ -15,6 +15,7 @@ class Turn
     else
       @player.minus_life
       puts "So close! The answer is #{@question.solution}".colorize(:light_red).on_black
+      @player.show_life
     end
   end
 

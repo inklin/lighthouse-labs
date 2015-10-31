@@ -26,7 +26,7 @@ class Player
   end
 
   def show_life
-    puts "#{@name}'s remaining lives: #{@lives}"
+    puts "You have #{@lives} remaining lives."
   end
 
   def get_answer
