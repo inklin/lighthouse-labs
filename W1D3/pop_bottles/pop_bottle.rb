@@ -78,7 +78,7 @@ def run_bottle_info()
     answer = gets.chomp
 
     if answer.include?('quit')
-      exit(0)
+      done = true
     else
       buy_bottles(answer.to_i)
     end
