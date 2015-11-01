@@ -58,27 +58,30 @@ puts "Result of bubble sort on 5 3 2 1 4 is #{result}"
 puts "Bubble sort on empty array: #{bubble_sort([]).inspect}"
 
 
+@i_count = 0
 def insertion_sort(arr)
   (1..arr.length-1).each do |index|
     number = arr[index]
-    new_index = index
+    new_index = index - 1
 
-    while (new_index > 0) && (arr[new_index-1] > number)
-      arr[new_index] = arr[new_index-1]
+    while new_index >= 0 && arr[new_index] > number
+      arr[new_index + 1] = arr[new_index]
       new_index -= 1
+      @i_count += 1
     end
-    arr[new_index] = number
+    arr[new_index + 1] = number
   end
-
   arr
 end
 
-result = insertion_sort([5, 3, 2, 6, 1, 4])
-puts "result of insertion sort on 5 3 2 1 4 is #{result}"
 
-# Expect nil when empty array is passed in
-puts "Insertion sort on empty array: #{insertion_sort([]).inspect}"
+# result = insertion_sort([5, 3, 2, 6, 1, 4])
+# puts "result of insertion sort on 5 3 2 1 4 is #{result}"
 
+# # Expect nil when empty array is passed in
+# puts "Insertion sort on empty array: #{insertion_sort([]).inspect}"
+
+@r_count = 0
 def rosetta_insertion_sort(arr)
   (1..arr.length-1).each do |i|
     value = arr[i]
@@ -87,22 +90,38 @@ def rosetta_insertion_sort(arr)
     while j >= 0 && arr[j] > value
       arr[j+1] = arr[j]
       j -= 1
+      @r_count += 1
     end
 
     arr[j+1] = value
   end
-
   arr
 end
 
-# Create a 10,000 element array, and map random numbers in it that range from 1 to 100,000
-list = Array.new(10_000).map { rand(100_000_000) }
+# result = rosetta_insertion_sort([5, 3, 2, 6, 1, 4])
+# puts "result of rosetta_insertion_sort on 5 3 2 1 4 is #{result}"
 
-Benchmark.bm do |x|
-  x.report("insertion sort:") {insertion_sort(list)}
-  x.report("Rosetta insertion sort:") {rosetta_insertion_sort(list)}
-  x.report("bubble sort:") {bubble_sort(list)}
-  x.report("ruby sort:") {sort(list)}
-end
+# # Expect nil when empty array is passed in
+# puts "Rosetta sort on empty array: #{rosetta_insertion_sort([]).inspect}"
+
+# Benchmark.bm do |x|
+#   x.report("Rosetta insertion sort:") {rosetta_insertion_sort(list)}
+#   x.report("insertion sort:") {insertion_sort(list)}
+#   x.report("bubble sort:") {bubble_sort(list)}
+#   x.report("ruby sort:") {sort(list)}
+# end
+
+# Create a 10,000 element array, and map random numbers in it that range from 1 to 100,000
+# 
+list = Array.new(10_000).map { rand(100_000_000) }
+insertion_sort(list)
+
+list = Array.new(10_000).map { rand(100_000_000) }
+rosetta_insertion_sort(list)
+
+puts "Insert count is #{@i_count}"
+puts "Rosetta count is #{@r_count}"
+
+
 
 
