@@ -10,14 +10,21 @@ def qualified_candidates(candidates)
 end
 
 def ordered_by_qualifications(candidates)
+
   sorted = candidates.sort do |a, b|
-    result = ( b[:years_of_experience] <=> a[:years_of_experience] )
-    if result == 0
-      result = ( b[:github_points] <=> a[:github_points])
+    if a[:years_of_experience] == b[:years_of_experience]
+      b[:github_points] <=> a[:github_points]
+    else
+      b[:years_of_experience] <=> a[:years_of_experience]
     end
-    result
   end
+
+  # using sort_by --> the block only takes one parameter and sorts the array by the result of each of the block calls
+  # sort_by is faster than sort for performance 
+  # sorted = candidates.sort_by { |candidate| [candidate[:years_of_experience], candidate[:github_points]]}
+  
   pp sorted
+
 end
 
 #ordered_by_qualifications(@candidates)
