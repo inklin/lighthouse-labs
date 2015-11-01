@@ -13,7 +13,7 @@ class Question
   end
 
   def correct?(answer)
-    answer.to_i == @solution
+    answer == @solution
   end
 
 end
