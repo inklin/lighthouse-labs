@@ -31,7 +31,7 @@ class Player
 
   def get_answer
     print ">> "
-    gets.chomp.to_i
+    gets.chomp
   end
 
   def reset
