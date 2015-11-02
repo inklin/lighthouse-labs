@@ -7,4 +7,4 @@ Don't just copy/paste the exercises and call it 'done'. Look at what is happenin
 
 This will be important in later exercises today.
 
-# NOTE: SKIP the Google Chart exercise at the end.
+NOTE: SKIP the Google Chart exercise at the end.
