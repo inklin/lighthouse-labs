@@ -36,8 +36,8 @@ end
 def give_bottles_and_caps(bottles, caps)
   from_bottles = (bottles / BOTTLE_TO_REDEEM)
   from_caps = (caps / CAP_TO_REDEEM)
-  new_bottles = from_bottles + from_caps
   update_freebies(from_bottles, from_caps)
+  new_bottles = from_bottles + from_caps
   return new_bottles
 end
 
@@ -56,14 +56,11 @@ def change_for_caps(caps)
   caps % CAP_TO_REDEEM
 end
 
-def redeem()
+def redeem
   new_bottles = give_bottles_and_caps(@bottles, @caps)
-  bottles = new_bottles + change_for_bottles(@bottles)
-  caps = new_bottles + change_for_caps(@caps)
-
+  @bottles = new_bottles + change_for_bottles(@bottles)
+  @caps = new_bottles + change_for_caps(@caps)
   @total_bottles += new_bottles
-  @bottles = bottles
-  @caps = caps
 end
 
 def can_redeem?()
@@ -80,7 +77,8 @@ def run_bottle_info()
     if answer.include?('quit')
       done = true
     else
-      buy_bottles(answer.to_i)
+      dollar_amount = answer.to_i
+      buy_bottles(dollar_amount)
     end
   end
 end

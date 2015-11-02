@@ -6,7 +6,7 @@
 CAP_TO_REDEEM = 4
 BOTTLE_TO_REDEEM = 2
 
-# updates number of pops
+# buy bottles, start redeeming until can no longer redeem
 def buy_bottles(investment)
   bottle_cost = 2
   bought_bottles = (investment / bottle_cost).floor
@@ -16,7 +16,9 @@ def buy_bottles(investment)
   @bottle_free = 0
   @cap_free = 0
 
-  redeem()
+  while can_redeem?
+    redeem
+  end
 
   show_stats(investment, bought_bottles)
 end
@@ -32,21 +34,19 @@ def show_stats(investment, bought_bottles)
 end
 
 
-def redeem()
-
-  while can_redeem?
+def redeem
     # get freebies from bottles
-    freebies_from_bottles = (@bottles / BOTTLE_TO_REDEEM).floor 
+    freebies_from_bottles = @bottles / BOTTLE_TO_REDEEM
     # update total freebies from bottles
     @bottle_free += freebies_from_bottles
 
 
-    freebies_from_caps = (@caps / CAP_TO_REDEEM).floor
+    freebies_from_caps = @caps / CAP_TO_REDEEM
     # update total freebies from caps
     @cap_free += freebies_from_caps
 
     # get total free bottles
-    pops = freebies_from_caps + freebies_from_bottles
+    free_from_both = freebies_from_caps + freebies_from_bottles
 
     # get remaining caps
     @caps = @caps % CAP_TO_REDEEM
@@ -54,17 +54,16 @@ def redeem()
     @bottles = @bottles % BOTTLE_TO_REDEEM
 
     # get bottles and caps from new pops
-    @bottles += pops
-    @caps += pops
-    @total_bottles += pops
-  end
+    @bottles += free_from_both
+    @caps += free_from_both
+    @total_bottles += free_from_both
 end
 
-def can_redeem?()
+def can_redeem?
   @bottles >= BOTTLE_TO_REDEEM || @caps >= CAP_TO_REDEEM
 end
 
-def run_bottle_info()
+def run_bottle_info
   done = false
 
   until done do
