@@ -1,0 +1,8 @@
+require './lib/animal'
+require './lib/mammal'
+require './lib/amphibian'
+require './lib/bird'
+require './lib/frog'
+require './lib/primate'
+require './lib/chimpanzee'
+require './lib/parrot'

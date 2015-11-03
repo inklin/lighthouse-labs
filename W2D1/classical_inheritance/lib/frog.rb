@@ -1,0 +1,2 @@
+class Frog < Amphibian
+end

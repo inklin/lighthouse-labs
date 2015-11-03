@@ -1,0 +1,2 @@
+class Chimpanzee < Primate
+end

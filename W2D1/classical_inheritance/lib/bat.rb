@@ -1,0 +1,2 @@
+class Bat < Mammal
+end
