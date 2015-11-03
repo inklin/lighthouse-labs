@@ -26,7 +26,11 @@ class Tournament
 
   def get_name(player)
     puts "Player #{player.name}: What is your name?".colorize(player.color).on_black
-    player.name = gets.chomp
+    while true
+      name = gets.chomp
+      break if name.length > 0
+    end
+    player.name = name
   end
 
 end
