@@ -1,3 +1,4 @@
+require_relative 'mammal'
 require_relative 'flight'
 
 class Bat < Mammal

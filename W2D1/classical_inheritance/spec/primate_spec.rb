@@ -1,6 +1,4 @@
-require '../lib/animal'
-require '../lib/mammal'
-require '../lib/primate'
+require_relative '../lib/primate'
 
 describe Primate do
   it "should create Primates" do

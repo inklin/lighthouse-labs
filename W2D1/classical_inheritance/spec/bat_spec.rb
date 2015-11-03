@@ -1,6 +1,4 @@
-require '../lib/animal'
-require '../lib/mammal'
-require '../lib/bat'
+require_relative '../lib/bat'
 
 describe Bat do
   it "should create new Bats" do

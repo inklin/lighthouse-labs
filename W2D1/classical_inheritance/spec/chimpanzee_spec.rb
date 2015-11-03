@@ -1,7 +1,4 @@
-require '../lib/animal'
-require '../lib/mammal'
-require '../lib/primate'
-require '../lib/chimpanzee'
+require_relative '../lib/chimpanzee'
 
 describe Chimpanzee do
   it "should create Chimpanzees" do

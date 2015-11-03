@@ -1,6 +1,4 @@
-require '../lib/animal'
-require '../lib/amphibian'
-require '../lib/frog'
+require_relative '../lib/frog'
 
 describe Frog do
   it "should create new Frogs" do 

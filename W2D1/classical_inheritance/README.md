@@ -33,8 +33,11 @@ This objective is to learn about using modules and mixins as a valuable part of 
 Here are some links which you can use to get more familiar with the concepts:
 
 [Ruby Modules](http://www.tutorialspoint.com/ruby/ruby_modules.htm)
+
 [Ruby doc on Modules](http://www.ruby-doc.org/core-2.1.2/Module.html)
+
 [Uses for Modules](http://blog.rubybestpractices.com/posts/gregory/037-issue-8-uses-for-modules.html)
+
 [Uses for Modules Part 2](http://blog.rubybestpractices.com/posts/gregory/038-issue-9-uses-for-modules.html)
 
 Allow birds to fly by calling #fly on them. Create a module Flight with a fly method and an airspeed_velocity reader and writer method.

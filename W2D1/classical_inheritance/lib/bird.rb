@@ -1,3 +1,4 @@
+require_relative 'animal'
 require_relative 'flight'
 
 class Bird < Animal
