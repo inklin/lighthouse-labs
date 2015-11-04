@@ -1,7 +1,5 @@
 # http://classic.battle.net/war3/human/units/footman.shtml
 class Footman < Unit
-  attr_accessor :health_points
-
   def initialize
     # health points, attack_power
     super(60, 10)
@@ -16,15 +14,11 @@ class Footman < Unit
   end
 
   def attack!(enemy)
-    if enemy.class.name == "Barracks"
-      barrack_damage = (self.attack_power.to_f / 2).ceil
-      enemy.damage(barrack_damage) unless cannot_attack?(enemy)
+    if enemy.is_a? Barracks
+      damage_amount = (self.attack_power.to_f / 2).ceil
+      enemy.damage(damage_amount)
     else
-      enemy.damage(self.attack_power) unless cannot_attack?(enemy)
+      super(enemy)
     end
-  end
-
-  def cannot_attack?(enemy)
-    dead? || enemy.dead?
   end
 end

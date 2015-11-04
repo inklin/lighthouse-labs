@@ -39,6 +39,6 @@ class Barracks
   end
 
   def damage(ap)
-    @health_points -= (ap.to_f / 2).ceil
+    @health_points -= ap
   end
 end

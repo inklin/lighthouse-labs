@@ -23,6 +23,10 @@ class Unit
   end
 
   def attack!(enemy)
-    enemy.damage(self.attack_power) unless self.dead? || enemy.dead?
+    enemy.damage(self.attack_power) unless cannot_attack?(enemy)
+  end
+
+  def cannot_attack?(enemy)
+    dead? || enemy.dead?
   end
 end

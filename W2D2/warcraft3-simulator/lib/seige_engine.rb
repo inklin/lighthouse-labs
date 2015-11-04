@@ -18,15 +18,11 @@ class SeigeEngine < Unit
   end
 
   def attack!(enemy)
-    type = enemy.class.name
-
-    case type
-    when "Barracks"
-      enemy.damage(self.attack_power * 4)
-    when "SeigeEngine"
-      enemy.damage(self.attack_power)
+    if enemy.is_a? Barracks
+      enemy.damage(self.attack_power * 2)
+    elsif enemy.is_a? SeigeEngine
+      super(enemy)
     end
-
   end
 
 end
