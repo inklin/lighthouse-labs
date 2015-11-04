@@ -30,16 +30,18 @@ class Player
   end
 
   def get_answer
-    loop do
+    begin
       print ">> "
       answer = gets.chomp
-      break if valid?(answer)
+      raise InvalidInputError if invalid?(answer)
+    rescue InvalidInputError
+      get_answer
     end
     answer
   end
 
-  def valid?(answer)
-    answer == "quit" || answer.to_i.to_s == answer
+  def invalid?(answer)
+    answer != "quit" && answer.to_i.to_s != answer
   end
 
   def reset
