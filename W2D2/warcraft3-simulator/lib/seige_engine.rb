@@ -1,20 +1,10 @@
 class SeigeEngine < Unit
-  @@lumber_cost = 60
+  LUMBER_COST = 60
+  FOOD_COST = 3
+  GOLD_COST = 200
 
   def initialize
     super(400, 50)
-  end
-
-  def self.lumber_cost
-    @@lumber_cost
-  end
-
-  def self.food_cost
-    3
-  end
-
-  def self.gold_cost
-    200
   end
 
   def attack!(enemy)

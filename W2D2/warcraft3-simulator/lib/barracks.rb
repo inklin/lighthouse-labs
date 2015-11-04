@@ -9,33 +9,33 @@ class Barracks
   end
 
   def can_train_footman?
-    self.food >= Footman.food_cost && self.gold >= Footman.gold_cost
+    food >= Footman::FOOD_COST && gold >= Footman::GOLD_COST
   end
 
   def train_footman
     if can_train_footman?
-      @gold -= Footman.gold_cost
-      @food -= Footman.food_cost
+      @gold -= Footman::GOLD_COST
+      @food -= Footman::FOOD_COST
       Footman.new
     end
   end
 
   def can_train_peasant?
-    self.food >= Peasant.food_cost && self.gold >= Peasant.gold_cost
+    food >= Peasant::FOOD_COST && gold >= Peasant::GOLD_COST
   end
 
   def train_peasant
     if can_train_peasant?
-      @gold -= Peasant.gold_cost
-      @food -= Peasant.food_cost
+      @gold -= Peasant::GOLD_COST
+      @food -= Peasant::FOOD_COST
       Peasant.new
     end
   end
 
   def build_seige_engine
-    @gold -= SeigeEngine.gold_cost
-    @food -= SeigeEngine.food_cost
-    @lumber -= SeigeEngine.lumber_cost
+    @gold -= SeigeEngine::GOLD_COST
+    @food -= SeigeEngine::FOOD_COST
+    @lumber -= SeigeEngine::LUMBER_COST
   end
 
   def damage(ap)
