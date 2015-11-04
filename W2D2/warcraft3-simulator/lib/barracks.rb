@@ -1,37 +1,44 @@
 class Barracks
-  attr_accessor :gold, :food
+  attr_reader :health_points, :lumber, :food, :gold
 
   def initialize
     @gold = 1000
     @food = 80
+    @health_points = 500
+    @lumber = 500
   end
 
   def can_train_footman?
-    self.food >= 2 && self.gold >= 135
+    self.food >= Footman.food_cost && self.gold >= Footman.gold_cost
   end
 
   def train_footman
-    gold_cost = 135
-    food_cost = 2
-
     if can_train_footman?
-      @gold -= gold_cost
-      @food -= food_cost
+      @gold -= Footman.gold_cost
+      @food -= Footman.food_cost
       Footman.new
     end
   end
 
   def can_train_peasant?
-    self.food >= 5 && self.gold >= 90
+    self.food >= Peasant.food_cost && self.gold >= Peasant.gold_cost
   end
 
   def train_peasant
     if can_train_peasant?
-      gold_cost = 90
-      food_cost = 5
-      @gold -= gold_cost
-      @food -= food_cost
+      @gold -= Peasant.gold_cost
+      @food -= Peasant.food_cost
       Peasant.new
     end
+  end
+
+  def build_seige_engine
+    @gold -= SeigeEngine.gold_cost
+    @food -= SeigeEngine.food_cost
+    @lumber -= SeigeEngine.lumber_cost
+  end
+
+  def damage(ap)
+    @health_points -= (ap.to_f / 2).ceil
   end
 end
