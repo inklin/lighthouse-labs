@@ -1,4 +1,8 @@
 class Tournament
+
+  class EmptyNameError < StandardError
+  end
+  
   def initialize
     @player1 = Player.new("1", :light_white)
     @player2 = Player.new("2", :light_magenta)

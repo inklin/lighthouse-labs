@@ -2,6 +2,9 @@ class Player
   attr_reader :color, :lives
   attr_accessor :name
 
+  class InvalidInputError < StandardError
+  end
+
   def initialize(name, color)
     @name = name
     @lives = 3
@@ -41,7 +44,7 @@ class Player
   end
 
   def invalid?(answer)
-    answer != "quit" && answer.to_i.to_s != answer
+    ( answer != "quit" && answer.to_i.to_s != answer ) || answer.empty?
   end
 
   def reset
