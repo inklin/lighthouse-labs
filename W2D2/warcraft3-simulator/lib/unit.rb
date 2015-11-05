@@ -11,20 +11,14 @@ class Unit
   end
 
   def dead?
-    @health_points <= 0
-  end
-
-  def self.gold_cost
-    0
-  end
-
-  def self.food_cost
-    0
+    health_points <= 0
   end
 
   def attack!(enemy)
-    enemy.damage(self.attack_power) unless cannot_attack?(enemy)
+    enemy.damage(attack_power) unless cannot_attack?(enemy)
   end
+
+  private
 
   def cannot_attack?(enemy)
     dead? || enemy.dead?

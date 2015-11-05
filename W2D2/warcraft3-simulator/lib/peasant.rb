@@ -1,11 +1,9 @@
-class Peasant
-  attr_reader :health_points, :attack_power
-
+class Peasant < Unit
+  
   FOOD_COST = 5
   GOLD_COST = 90
 
   def initialize
-    @health_points = 35
-    @attack_power = 0
+    super(35, 0)
   end
 end

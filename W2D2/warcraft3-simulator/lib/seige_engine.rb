@@ -9,7 +9,7 @@ class SeigeEngine < Unit
 
   def attack!(enemy)
     if enemy.is_a? Barracks
-      enemy.damage(self.attack_power * 2)
+      enemy.damage(attack_power * 2)
     elsif enemy.is_a? SeigeEngine
       super(enemy)
     end
