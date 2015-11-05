@@ -1,6 +1,11 @@
 require_relative './lib/post'
 require_relative './lib/comment'
 require_relative './lib/parser'
-require 'nokogiri'
+require_relative './lib/scraper'
 
-Parser.new('post.html').run
+require 'open-uri'
+require 'nokogiri'
+require 'colorize'
+
+url = ARGV[0]
+Scraper.new(url).run

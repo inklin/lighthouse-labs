@@ -1,53 +1,48 @@
 class Parser
-  attr_reader :doc, :post
 
-  def initialize(filename)
-    @file = filename
-    @post = nil
-    @doc = nil
+  def initialize(url)
+    @url = url
   end
 
-  def run
-    @doc = Nokogiri::HTML(File.open(@file))
-    @post = create_post
-    parse_comments
+  def id
+    doc.search('span.score')[0]['id'][/\d+/].to_i
   end
 
-  def create_post
-    Post.new(post_title, post_url, post_points, post_id)
+  def title
+    doc.search('.title > a').text
   end
 
-  def post_id
-    doc.search('span.score').attribute('id').value.gsub('score_', '')
+  def url
+    doc.search('td.title > a')[0]['href']
   end
 
-  def post_title
-    doc.search('title').text.gsub(' | Hacker News', '')
+  def points
+    doc.search('span.score').text[/\d+/].to_i
   end
 
-  def post_url
-    "url"
-  end
-
-  def post_points
-    doc.search('span.score').text.gsub(/[^\d]+/, '')
-  end
-
-  def parse_comments
-    comments = doc.search('td.default')
-
+  def parsed_comments
+    parsed_comments = []
     comments.each do |comment|
-      new_comment = parsed_comment(comment)
-      @post.add_comment(new_comment)
+      parsed_comments << parsed_comment(comment)
     end
+    parsed_comments
+  end
 
-    puts @post.inspect
+  private
+
+  def doc
+    html = open(@url)
+    Nokogiri::HTML(html.read)
+  end
+
+  def comments
+    doc.search('td.default')
   end
 
   def parsed_comment(comment)
-    content = comment.search('span.comment > span').text.strip
-    user = comment.search('span.comhead > a:first-child').attribute('href').value.gsub(/\w+\?id=([\w]+)/, '\1')
-    id = comment.search('span.comhead > a:nth-child(2)').attribute('href').value.gsub(/[^\d]+/, '').to_i
+    content = comment.search('span.comment > span').text
+    user = comment.search('span.comhead > a:first-child').text
+    id = comment.search('span.comhead > a:nth-child(2)')[0]['href'][/\d+/].to_i
     Comment.new(user, id, content)
   end
 end
