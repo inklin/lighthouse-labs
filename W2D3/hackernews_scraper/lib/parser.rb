@@ -51,9 +51,12 @@ class Parser
   end
 
   def parsed_comment(comment)
-    content = comment.search('span.comment > span').text
-    user = comment.search('span.comhead > a:first-child').text
-    id = comment.search('span.comhead > a:nth-child(2)')[0]['href'][/\d+/].to_i
+    content = comment.search('span.comment > span')
+    content = content.nil? ? "" : content.text
+    user = comment.search('span.comhead > a:first-child')
+    user = user.nil? ? "" : user.text
+    id = comment.search('span.comhead > a:nth-child(2)')
+    id = id.nil? ? "" : id[0]['href'][/\d+/].to_i
     Comment.new(user, id, content)
   end
 end
