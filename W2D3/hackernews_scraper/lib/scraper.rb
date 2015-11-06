@@ -1,12 +1,26 @@
 class Scraper
+  class NotHackerNews < StandardError
+  end
+
   attr_reader :post
 
   def initialize(url)
     @url = url
   end
 
+  def doc
+    html = open(@url)
+    Nokogiri::HTML(html.read)
+  end
+
   def run
-    create_parser
+    begin
+      raise NotHackerNews unless @url.include?("news.ycombinator.com")
+    rescue NotHackerNews
+      puts "Boo, not a Hacker News site."
+      exit(0)
+    end
+    create_parser(doc)
     create_post
     add_comments_to_post
     show_results
@@ -21,8 +35,8 @@ class Scraper
   end
 
   private
-  def create_parser
-    @parser = Parser.new(@url)
+  def create_parser(doc)
+    @parser = Parser.new(doc)
   end
 
   def create_post

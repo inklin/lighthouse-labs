@@ -1,23 +1,37 @@
 class Parser
+  attr_reader :doc
+  class SectionNotFound < StandardError
+  end
 
-  def initialize(url)
-    @url = url
+  class NoCommentsError < StandardError
+  end
+
+  def initialize(doc)
+    @doc = doc
   end
 
   def id
-    doc.search('span.score')[0]['id'][/\d+/].to_i
+    section = doc.search('span.score')
+    raise SectionNotFound, "No ID section found" if section.nil?
+    section[0]['id'][/\d+/].to_i
   end
 
   def title
-    doc.search('.title > a').text
+    section = doc.search('.title > a')
+    raise SectionNotFound, "No title found" if section.nil?
+    section.text
   end
 
   def url
-    doc.search('td.title > a')[0]['href']
+    section = doc.search('td.title > a')
+    raise SectionNotFound, "No url section found" if section.nil?
+    section[0]['href']
   end
 
   def points
-    doc.search('span.score').text[/\d+/].to_i
+    section = doc.search('span.score')
+    raise SectionNotFound, "No points section found" if section.nil?
+    section.text[/\d+/].to_i
   end
 
   def parsed_comments
@@ -30,13 +44,10 @@ class Parser
 
   private
 
-  def doc
-    html = open(@url)
-    Nokogiri::HTML(html.read)
-  end
-
   def comments
-    doc.search('td.default')
+    comments = doc.search('td.default')
+    raise NoCommentsError "No comments found" if comments.nil?
+    comments
   end
 
   def parsed_comment(comment)

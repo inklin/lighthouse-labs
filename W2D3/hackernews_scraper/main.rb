@@ -8,4 +8,5 @@ require 'nokogiri'
 require 'colorize'
 
 url = ARGV[0]
+
 Scraper.new(url).run
