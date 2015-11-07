@@ -9,10 +9,6 @@ class Post
     @comments = []
   end
 
-  def comments
-    @comments
-  end
-
   def add_comment(comment)
     @comments << comment
   end

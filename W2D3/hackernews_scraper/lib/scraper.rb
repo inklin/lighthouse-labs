@@ -35,6 +35,7 @@ class Scraper
   end
 
   private
+  
   def create_parser(doc)
     @parser = Parser.new(doc)
   end
