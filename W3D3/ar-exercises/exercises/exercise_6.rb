@@ -20,5 +20,4 @@ puts "----------"
 
 puts "Store 1 has #{@store1.employees.count} employees"
 puts "Store 2 has #{@store2.employees.count} employees"
-
 puts "Total number of employees at all stores: #{Employee.count}"
