@@ -8,6 +8,14 @@ class Teacher < ActiveRecord::Base
 
   after_save :remove_students_after_retire
 
+  def days_employed
+    if retirement_date
+      retirement_date - hire_date
+    else
+      Date.today - hire_date
+    end
+  end
+
   private
 
   def retirement_cannot_be_before_hire
