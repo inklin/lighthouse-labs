@@ -23,9 +23,14 @@ body {
     padding: 6px;
     transition: 1s linear;
 
-    &:hover {
+    &:nth-child(odd):hover {
       @include transform(rotate(360deg));
     }
+
+    &:nth-child(even):hover {
+      @include transform(rotateY(180deg));
+    }
+
     .headshot {
       border-radius: 50%;
       width: 200px;
