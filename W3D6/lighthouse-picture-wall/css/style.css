@@ -1,12 +1,14 @@
 body {
-  font-family: Verdana, sans-serif;
-  font-size: 1.3em; }
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  color: #121f1f; }
 
 #team-members {
+  padding: 0 50px;
   clear: both; }
   #team-members .member {
     float: left;
-    margin: 20px;
+    margin: 15px 30px;
     padding: 6px;
     transition: 1s linear; }
     #team-members .member:nth-child(odd):hover {

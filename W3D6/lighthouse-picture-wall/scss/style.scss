@@ -1,5 +1,5 @@
-$font-stack: Verdana, sans-serif;
-$gray: #5F9EA0;
+$font-stack: 'Roboto', sans-serif;
+$gray: #121f1f;
 
 @mixin transform($transforms) {
      -moz-transform: $transforms;
@@ -11,15 +11,17 @@ $gray: #5F9EA0;
 
 body {
   font-family: $font-stack;
-  font-size: 1.3em;
+  font-size: 1em;
+  color: $gray;
 }
 
 #team-members {
+  padding: 0 50px;
   clear: both;
 
   .member {
     float: left;
-    margin: 20px;
+    margin: 15px 30px;
     padding: 6px;
     transition: 1s linear;
 
