@@ -9,10 +9,77 @@ body {
     /*border: 1px solid gray;*/
     margin: 10px;
     padding: 6px; }
-    #team-members .member img {
+    #team-members .member .headshot {
+      border-radius: 20px;
       width: 200px;
-      height: 200px; }
+      height: 200px;
+      background-size: contain; }
     #team-members .member div .name {
       text-align: center; }
+
+#arvinder {
+  background: url("../images/arvinder.jpg"); }
+  #arvinder:hover {
+    background: url("../images/arvinder_filtered.jpg"); }
+
+#charlyne {
+  background: url("../images/charlyne.jpg"); }
+  #charlyne:hover {
+    background: url("../images/charlyne_filtered.jpg"); }
+
+#david {
+  background: url("../images/david.jpg"); }
+  #david:hover {
+    background: url("../images/david_filtered.jpg"); }
+
+#don {
+  background: url("../images/don.jpg"); }
+  #don:hover {
+    background: url("../images/don_filtered.jpg"); }
+
+#jeremy {
+  background: url("../images/jeremy.jpg"); }
+  #jeremy:hover {
+    background: url("../images/jeremy_filtered.jpg"); }
+
+#khurram {
+  background: url("../images/khurram.jpg"); }
+  #khurram:hover {
+    background: url("../images/khurram_filtered.jpg"); }
+
+#landon {
+  background: url("../images/landon.jpg"); }
+  #landon:hover {
+    background: url("../images/landon_filtered.jpg"); }
+
+#michael {
+  background: url("../images/michael.jpg"); }
+  #michael:hover {
+    background: url("../images/michael_filtered.jpg"); }
+
+#monica {
+  background: url("../images/monica.jpg"); }
+  #monica:hover {
+    background: url("../images/monica_filtered.jpg"); }
+
+#murat {
+  background: url("../images/murat.jpg"); }
+  #murat:hover {
+    background: url("../images/murat_filtered.jpg"); }
+
+#rosy {
+  background: url("../images/rosy.jpg"); }
+  #rosy:hover {
+    background: url("../images/rosy_filtered.jpg"); }
+
+#sherman {
+  background: url("../images/sherman.jpg"); }
+  #sherman:hover {
+    background: url("../images/sherman_filtered.jpg"); }
+
+#sylvia {
+  background: url("../images/sylvia.jpg"); }
+  #sylvia:hover {
+    background: url("../images/sylvia_filtered.jpg"); }
 
 /*# sourceMappingURL=style.css.map */

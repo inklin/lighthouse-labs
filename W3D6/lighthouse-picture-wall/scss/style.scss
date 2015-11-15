@@ -14,15 +14,27 @@ body {
     margin: 10px;
     padding: 6px;
 
-    img {
+    .headshot {
+      border-radius: 20px;
       width: 200px;
       height: 200px;
+      background-size: contain;
     }
 
     div {
       .name {
         text-align: center; 
       }
+    }
+  }
+}
+
+@each $name in 'arvinder', 'charlyne', 'david', 'don', 'jeremy', 'khurram',
+'landon', 'michael', 'monica', 'murat', 'rosy', 'sherman', 'sylvia' {
+  ##{$name} {
+    background: url('../images/#{$name}.jpg');
+    &:hover {
+      background: url('../images/#{$name}_filtered.jpg');
     }
   }
 }
