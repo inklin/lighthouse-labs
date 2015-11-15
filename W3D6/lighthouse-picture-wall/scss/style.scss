@@ -1,8 +1,17 @@
 $font-stack: Verdana, sans-serif;
+$gray: #5F9EA0;
+
+@mixin transform($transforms) {
+     -moz-transform: $transforms;
+       -o-transform: $transforms;
+      -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+          transform: $transforms;
+}
 
 body {
   font-family: $font-stack;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 #team-members {
@@ -10,21 +19,23 @@ body {
 
   .member {
     float: left;
-    /*border: 1px solid gray;*/
-    margin: 10px;
+    margin: 20px;
     padding: 6px;
+    transition: 1s linear;
 
+    &:hover {
+      @include transform(rotate(360deg));
+    }
     .headshot {
-      border-radius: 20px;
+      border-radius: 50%;
       width: 200px;
       height: 200px;
       background-size: contain;
     }
 
-    div {
-      .name {
-        text-align: center; 
-      }
+    .name {
+      text-align: center;
+      margin: 5px 0; 
     }
   }
 }
@@ -38,3 +49,6 @@ body {
     }
   }
 }
+
+
+

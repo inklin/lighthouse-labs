@@ -1,21 +1,28 @@
 body {
   font-family: Verdana, sans-serif;
-  font-size: 1.5em; }
+  font-size: 1.3em; }
 
 #team-members {
   clear: both; }
   #team-members .member {
     float: left;
-    /*border: 1px solid gray;*/
-    margin: 10px;
-    padding: 6px; }
+    margin: 20px;
+    padding: 6px;
+    transition: 1s linear; }
+    #team-members .member:hover {
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg); }
     #team-members .member .headshot {
-      border-radius: 20px;
+      border-radius: 50%;
       width: 200px;
       height: 200px;
       background-size: contain; }
-    #team-members .member div .name {
-      text-align: center; }
+    #team-members .member .name {
+      text-align: center;
+      margin: 5px 0; }
 
 #arvinder {
   background: url("../images/arvinder.jpg"); }
