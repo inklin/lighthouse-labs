@@ -1,0 +1,17 @@
+<h1>Song details</h1>
+
+<div>
+  <p>Title: <%= @song.title %></p>
+  <p>Author: <%= @song.author %></p>
+</div>
+
+<% if !@other_songs.empty? %>
+  <div>
+    <h3>Other songs by <%= @song.author %></h3>
+    <% @other_songs.each do |song| %>
+      <p><a href="/songs/<%= song.id %>"><%= song.title %></a></p>
+    <% end %>
+  </div>
+<% end %>
+
+<a href="/songs">Back to all Songs</a>
