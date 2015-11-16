@@ -1,5 +1,11 @@
 <h1>Song Wall</h1>
 
+<% if @user %>
+  <div>
+    <p>You are signed in as <%= @user.email %></p>
+  </div>
+<% end %>
+
 <% @songs.each do |song| %>
   <div class="song">
   <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
