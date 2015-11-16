@@ -1,6 +1,6 @@
 <h1>Add a New Song</h1>
 
-<% if @song && @song.errors.any? %>
+<% if @song.errors.any? %>
   <div>
     <strong>Oh no, there are problems with your song!</strong>
     <ul>
@@ -11,18 +11,18 @@
   </div>
 <% end %>
 
-<form action='/songs' method='POST'>
+<form action="/songs" method="POST">
   <p>
-    <label for='title'>Song title:</label>
-    <input type='text' name='title' />
+    <label for="title">Song title:</label>
+    <input type="text" name="title" value="<%= @song && @song.title %>" />
   </p>
   <p>
-    <label for='author'>Song author:</label>
-    <input type='text' name='author' />
+    <label for="author">Song author:</label>
+    <input type="text" name="author" value="<%= @song && @song.author %>" />
   </p>
   <p>
-    <label for='url'>URL:</label>
-    <input type='text' name='url' />
+    <label for="url">URL:</label>
+    <input type="text" name="url" value="<%= @song && @song.url %>" />
   </p>
-  <button type='submit'>Add Song</button>
+  <button type="submit">Add Song</button>
 </form>
