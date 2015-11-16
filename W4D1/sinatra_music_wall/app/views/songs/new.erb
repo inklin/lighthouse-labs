@@ -1,5 +1,16 @@
 <h1>Add a New Song</h1>
 
+<% if @song && @song.errors.any? %>
+  <div>
+    <strong>Oh no, there are problems with your song!</strong>
+    <ul>
+      <% @song.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form action='/songs' method='POST'>
   <p>
     <label for='title'>Song title:</label>
