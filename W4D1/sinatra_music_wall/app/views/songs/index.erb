@@ -4,18 +4,22 @@
   <p><%= params[:vote_error] %></p>
 <% end %>
 
-<% @songs.each do |song| %>
-  <div class="song">
-    <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
-    <span>Votes: <%= song.votes.count %></span>
-    <% if logged_in? %>
-      <form action="/votes" method="POST">
-        <input type="hidden" name="song_id" value="<%= song.id %>" />
-        <input type="submit" value="Vote Up" />
-      </form>
-    <% end %>
-  </div>
-<% end %>
+<div class="container">
+  <% @songs.each do |song| %>
+    <div class="row">
+      <div class="col-md-8">
+        <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
+      </div>
+      <div class="col-md-4">Votes: <%= song.votes.count %></div>
+      <% if logged_in? %>
+        <form action="/votes" method="POST">
+          <input type="hidden" name="song_id" value="<%= song.id %>" />
+          <input type="submit" value="Vote Up" />
+        </form>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <% if logged_in? %>
   <a href="/songs/new">Add a New Song</a>

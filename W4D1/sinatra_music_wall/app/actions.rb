@@ -41,6 +41,7 @@ post '/signup' do
     password: params[:password]
   )
   if @user.save
+    session[:user_id] = @user.id
     redirect '/songs'
   else
     erb :'login/signup'
@@ -48,7 +49,8 @@ post '/signup' do
 end
 
 get '/songs' do
-  @songs = Song.all
+  @songs = Song.joins("LEFT OUTER JOIN 'votes' ON songs.id = votes.song_id").
+                group('songs.id').order('count(votes.id) DESC')
   erb :'songs/index'
 end
 
