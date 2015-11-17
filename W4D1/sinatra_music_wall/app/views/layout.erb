@@ -25,6 +25,9 @@
       <form action="/logout" method="POST">
         <button type="submit">Logout</button>
       </form>
+    <% else %>
+      <a href="/login">Login</a>
+      <a href="/signup">Sign Up</a>
     <% end %>
   </div>
   <%= yield %>

@@ -5,7 +5,7 @@
   <p>Author: <%= @song.author %></p>
 </div>
 
-<% if !@other_songs.empty? %>
+<% if @other_songs.any? %>
   <div>
     <h3>Other songs by <%= @song.author %></h3>
     <% @other_songs.each do |song| %>
