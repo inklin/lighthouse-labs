@@ -1,7 +1,7 @@
 class Vote < ActiveRecord::Base
 
   belongs_to :user
-  belongs_to :song
+  belongs_to :song, :counter_cache => true
   
   validate :user_cannot_vote_twice, on: :create
 

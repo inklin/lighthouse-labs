@@ -44,8 +44,9 @@ post '/signup' do
 end
 
 get '/songs' do
-  @songs = Song.joins("LEFT OUTER JOIN 'votes' ON songs.id = votes.song_id").
-                group('songs.id').order('count(votes.id) DESC')
+  # @songs = Song.joins("LEFT OUTER JOIN 'votes' ON songs.id = votes.song_id").
+  #               group('songs.id').order('count(votes.id) DESC')
+  @songs = Song.order(votes_count: :desc)
   erb :'songs/index'
 end
 
@@ -104,6 +105,5 @@ post '/delete-reviews' do
   review_id = params[:review_id]
   song_id = params[:song_id]
   Review.find(review_id).destroy
-  
-  redirect '/songs'
+  redirect '/songs' 
 end

@@ -1,7 +1,7 @@
 class Review < ActiveRecord::Base
   
   belongs_to :user
-  belongs_to :song
+  belongs_to :song, :counter_cache => true
 
   validates :user_id, presence: true
   validates :song_id, presence: true

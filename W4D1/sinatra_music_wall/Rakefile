@@ -16,6 +16,12 @@ task "db:drop" do
   rm_f 'db/db.sqlite3'
 end
 
+desc "update the votes and review counter for Songs"
+task 'db:update_song_votes_reviews' do
+  Song.find_each { |song| Song.reset_counters(song.id, :votes) }
+  Song.find_each { |song| Song.reset_counters(song.id, :reviews) }
+end
+
 task 'db:create_migration' do
   unless ENV["NAME"]
     puts "No NAME specified. Example usage: `rake db:create_migration NAME=create_users`"
