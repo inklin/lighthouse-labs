@@ -1,25 +1,28 @@
 <h1>Song Wall</h1>
 
-<% if params[:vote_error] %>
-  <p><%= params[:vote_error] %></p>
-<% end %>
+<div class="row">
+  <% if params[:vote_error] %>
+    <p><%= params[:vote_error] %></p>
+  <% end %>
+</div>
 
-<div class="container">
-  <% @songs.each do |song| %>
-    <div class="row">
-      <div class="col-md-8">
-        <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
-      </div>
-      <div class="col-md-4">Votes: <%= song.votes.count %></div>
-      <% if logged_in? %>
+
+<% @songs.each do |song| %>
+  <div class="row">
+    <div class="col-md-2">Votes: <%= song.votes.count %></div>
+    <div class="col-md-8">
+      <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
+    </div>
+    <% if logged_in? && current_user.votes.find_by(song_id: song.id).nil? %>
+      <div class="col-md-2">
         <form action="/votes" method="POST">
           <input type="hidden" name="song_id" value="<%= song.id %>" />
           <input type="submit" value="Vote Up" />
         </form>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <% if logged_in? %>
   <a href="/songs/new">Add a New Song</a>

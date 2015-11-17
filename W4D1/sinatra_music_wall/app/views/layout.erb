@@ -19,7 +19,7 @@
 </head>
 <body>
 
-  <div>
+  <div class="container-fluid">
     <% if logged_in? %>
       <p>You are signed in as <%= current_user.email %></p>
       <form action="/logout" method="POST">
@@ -30,6 +30,8 @@
       <a href="/signup">Sign Up</a>
     <% end %>
   </div>
-  <%= yield %>
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
 </body>
 </html>
