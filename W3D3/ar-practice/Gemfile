@@ -1,0 +1,9 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem 'sqlite3'
+gem 'byebug'
+gem 'pg'
+gem 'activerecord'
+gem 'activesupport'
+gem 'rspec'
