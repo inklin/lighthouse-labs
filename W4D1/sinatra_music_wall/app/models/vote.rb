@@ -3,7 +3,7 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :song
   
-  validate :user_cannot_vote_twice
+  validate :user_cannot_vote_twice, on: :create
 
   def user_cannot_vote_twice
     song_vote = user.votes.find_by(song_id: song.id)

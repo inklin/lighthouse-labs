@@ -17,4 +17,14 @@
   </div>
 <% end %>
 
+<% if @song.reviews.any? %>
+  <div>
+    <h3>Reviews for <%= @song.title %></h3>
+    <% @song.reviews.each do |review| %>
+      <p><%= review.content %></p>
+      <p>reviewed by <%= review.user.email %></p>
+    <% end %>
+  </div>
+<% end %>
+
 <a href="/songs">Back to all Songs</a>
