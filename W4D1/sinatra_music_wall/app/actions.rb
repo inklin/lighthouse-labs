@@ -1,35 +1,30 @@
 # Homepage (Root path)
 
 def logged_in?
-  # change user object into true boolean value
   !!current_user
 end
 
 def current_user
-  User.find_by(id: cookies[:user_id])
+  User.find_by(id: session[:user_id])
 end
 
 get '/' do
   erb :index
 end
 
-get '/login' do
-  erb :'login/login'
-end
-
 post '/login' do
-  email = params[:email]
-  password = params[:password]
-
-  user = User.find_by(email: email)
-
-  if user.password == password
-    cookies[:user_id] = user.id
+  user = User.find_by(email: params[:email], password: params[:password])
+  if user
+    session[:user_id] = user.id
     redirect '/songs'
   else
-    @error_message = "Incorrect email or password."
-    erb :'/login/login'
+    redirect '/songs'
   end
+end
+
+post '/logout' do
+  session.clear
+  redirect '/songs'
 end
 
 get '/signup' do
@@ -51,10 +46,6 @@ end
 
 get '/songs' do
   @songs = Song.all
-
-  if logged_in?
-    @user = User.find_by(id: cookies[:user_id])
-  end
   erb :'songs/index'
 end
 

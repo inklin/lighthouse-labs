@@ -8,7 +8,11 @@
 
 <% @songs.each do |song| %>
   <div class="song">
-  <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
+    <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
+    <form action="/votes" method="POST">
+      <input type="hidden" name="song_id" value="<%= song.id %>" />
+      <input type="submit" value="Vote Up" />
+    </form>
   </div>
 <% end %>
 

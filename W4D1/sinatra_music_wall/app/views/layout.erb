@@ -18,6 +18,27 @@
   <title></title>
 </head>
 <body>
+  <div>
+    <% if logged_in? %>
+      <p>You are signed in as <%= current_user.email %></p>
+      <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+      </form>
+    <% else %>
+      <p>Please login</p>
+      <form action="/login" method="POST">
+        <p>
+          <label for="email">Email</label>
+          <input type="text" name="email" />
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input type="text" name="password" />
+        </p>
+        <button type="submit">Login</button>
+      </form>
+    <% end %>
+  </div>
   <%= yield %>
 </body>
 </html>
