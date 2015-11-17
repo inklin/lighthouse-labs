@@ -1,7 +1,5 @@
-# Homepage (Root path)
-
 def logged_in?
-  !!current_user
+  session[:user_id]
 end
 
 def current_user
@@ -12,13 +10,18 @@ get '/' do
   erb :index
 end
 
+get '/login' do
+  erb :'login/login'
+end
+
 post '/login' do
   user = User.find_by(email: params[:email], password: params[:password])
   if user
     session[:user_id] = user.id
     redirect '/songs'
   else
-    redirect '/songs'
+    @login_error = 'Invalid email or password'
+    erb :'login/login'
   end
 end
 
@@ -53,7 +56,8 @@ post '/songs' do
   @song = Song.new(
     title: params[:title], 
     author: params[:author], 
-    url: params[:url]
+    url: params[:url],
+    user_id: session[:user_id]
   )
   if @song.save
     redirect '/songs'
@@ -71,4 +75,17 @@ get '/songs/:id' do
   @song = Song.find(params[:id])
   @other_songs = Song.where('author = ? AND id != ?', @song.author, @song.id)
   erb :'songs/show'
+end
+
+post '/votes' do
+  song_id = params[:song_id].to_i
+  @vote = Vote.new(
+    song_id: song_id,
+    user_id: session[:user_id]
+  )
+  if @vote.save
+    redirect '/songs'
+  else
+    redirect '/songs?vote_error=Cannot vote twice for the same song'
+  end
 end
