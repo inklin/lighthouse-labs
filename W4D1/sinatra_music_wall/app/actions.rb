@@ -10,18 +10,13 @@ get '/' do
   erb :index
 end
 
-get '/login' do
-  erb :'login/login'
-end
-
 post '/login' do
   user = User.find_by(email: params[:email], password: params[:password])
   if user
     session[:user_id] = user.id
     redirect '/songs'
   else
-    @login_error = 'Invalid email or password'
-    erb :'login/login'
+    redirect '/songs?login_error=Invalid email or password'
   end
 end
 

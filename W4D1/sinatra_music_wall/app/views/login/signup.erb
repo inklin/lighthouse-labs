@@ -4,21 +4,21 @@
   <div>
     <ul>
       <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="bg-warning"><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<form action="/signup" method="POST">
-  <p>
+<form class"navbar-form" action="/signup" method="POST">
+  <div>
     <label for="email">Email</label>
     <input type="text" name="email" value="<%= @user.email %>"/>
-  </p>
-  <p>
+  </div>
+  <div>
     <label for="password">Password</label>
     <input type="text" name="password" value="<%= @user.password %>"/>
-  </p>
+  </div>
   <button type="submit">Sign up</button>
 </form>
 

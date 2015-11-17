@@ -3,7 +3,7 @@
 <div>
   <p>Title: <%= @song.title %></p>
   <p>Author: <%= @song.author %></p>
-  <% if @song.url.length > 0 %>
+  <% if @song.url && @song.url.length > 0 %>
     <p>Url: <%= @song.url %></p>
   <% end %>
 </div>

@@ -1,8 +1,6 @@
-<h1>Song Wall</h1>
-
 <div class="row">
   <% if params[:vote_error] %>
-    <p><%= params[:vote_error] %></p>
+    <p class="bg-warning"><%= params[:vote_error] %></p>
   <% end %>
 </div>
 
@@ -13,11 +11,15 @@
     <div class="col-md-8">
       <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
     </div>
-    <% if logged_in? && current_user.votes.find_by(song_id: song.id).nil? %>
+    <% if logged_in? %>
       <div class="col-md-2">
         <form action="/votes" method="POST">
           <input type="hidden" name="song_id" value="<%= song.id %>" />
-          <input type="submit" value="Vote Up" />
+          <% if current_user.votes.find_by(song_id: song.id).nil? %>
+            <input type="submit" value="Vote Up" class="btn btn-primary" />
+          <% else %>
+            <input type="button" value="Vote" class="btn btn-primary" disabled="disabled">
+          <% end %>
         </form>
       </div>
     <% end %>
