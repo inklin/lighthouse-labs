@@ -54,7 +54,7 @@ post '/songs' do
     title: params[:title], 
     author: params[:author], 
     url: params[:url],
-    user_id: session[:user_id]
+    user_id: current_user.id
   )
   if @song.save
     redirect '/songs'
@@ -78,11 +78,25 @@ post '/votes' do
   song_id = params[:song_id].to_i
   @vote = Vote.new(
     song_id: song_id,
-    user_id: session[:user_id]
+    user_id: current_user.id
   )
   if @vote.save
     redirect '/songs'
   else
     redirect '/songs?vote_error=Cannot vote twice for the same song'
+  end
+end
+
+post '/reviews' do
+  binding.pry
+  content = params[:content]
+  song_id = params[:song_id].to_i
+  @review = Review.new(
+    song_id: song_id,
+    user_id: current_user.id,
+    content: content
+  )
+  if @review.save
+    redirect '/songs'
   end
 end

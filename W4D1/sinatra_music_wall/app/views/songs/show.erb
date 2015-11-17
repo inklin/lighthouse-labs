@@ -17,6 +17,22 @@
   </div>
 <% end %>
 
+<% if logged_in? %>
+  <% if current_user.reviews.find_by(song_id: @song.id).nil? %>
+    <h3>Review This Song:</h3>
+    <form action="/reviews" method="post">
+      <p>
+        <input type="hidden" name="song_id" value="<%= @song.id %>" />
+        <label for="content">Content</label>
+        <textarea id="content" name="content" rows="5" columns="50" placeholder="Write a review"></textarea>
+      </p>
+      <button>Submit review</button>
+    </form>
+  <% end %>
+<% else %>
+  <p>Sign up or login to review this song!</p>
+<% end %>
+
 <% if @song.reviews.any? %>
   <div>
     <h3>Reviews for <%= @song.title %></h3>
