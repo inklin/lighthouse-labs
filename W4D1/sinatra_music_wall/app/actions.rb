@@ -88,7 +88,6 @@ post '/votes' do
 end
 
 post '/reviews' do
-  binding.pry
   content = params[:content]
   song_id = params[:song_id].to_i
   @review = Review.new(
@@ -99,4 +98,12 @@ post '/reviews' do
   if @review.save
     redirect '/songs'
   end
+end
+
+post '/delete-reviews' do
+  review_id = params[:review_id]
+  song_id = params[:song_id]
+  Review.find(review_id).destroy
+  
+  redirect '/songs'
 end

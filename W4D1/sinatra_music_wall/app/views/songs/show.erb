@@ -19,15 +19,17 @@
 
 <% if logged_in? %>
   <% if current_user.reviews.find_by(song_id: @song.id).nil? %>
-    <h3>Review This Song:</h3>
-    <form action="/reviews" method="post">
-      <p>
-        <input type="hidden" name="song_id" value="<%= @song.id %>" />
-        <label for="content">Content</label>
-        <textarea id="content" name="content" rows="5" columns="50" placeholder="Write a review"></textarea>
-      </p>
-      <button>Submit review</button>
-    </form>
+    <div>
+      <h3>Review This Song:</h3>
+      <form action="/reviews" method="post">
+        <p>
+          <input type="hidden" name="song_id" value="<%= @song.id %>" />
+          <label for="content">Content</label>
+          <textarea id="content" name="content" rows="5" columns="50" placeholder="Write a review"></textarea>
+        </p>
+        <button>Submit review</button>
+      </form>
+    </div>
   <% end %>
 <% else %>
   <p>Sign up or login to review this song!</p>
@@ -37,8 +39,19 @@
   <div>
     <h3>Reviews for <%= @song.title %></h3>
     <% @song.reviews.each do |review| %>
-      <p><%= review.content %></p>
-      <p>reviewed by <%= review.user.email %></p>
+      <div>
+        <p><%= review.content %></p>
+        <p>reviewed by <%= review.user.email %></p>
+        <% if logged_in? && review.user.id == current_user.id %>
+          <p>
+            <form action="/delete-reviews" method="post">
+              <input type="hidden" name="song_id" value="<%= @song.id %>" />
+              <input type="hidden" name="review_id" value="<%= review.id %>" />
+              <button>Delete Review</button>
+            </form>
+          </p>
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>
