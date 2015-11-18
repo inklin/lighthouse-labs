@@ -5,8 +5,8 @@ class Review < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :song_id, presence: true
-  validates :content, length: { minimum: 20 }
-
+  validates :content, length: { minimum: 10 }
+  validates :rating, numericality: { only_integer: true, in: 1..5 }
   validate :user_cannot_review_song_twice, on: :create
 
   private

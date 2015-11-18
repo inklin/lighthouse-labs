@@ -6,11 +6,11 @@ def current_user
   User.find_by(id: session[:user_id])
 end
 
-get '/' do
+get "/" do
   erb :index
 end
 
-post '/login' do
+post "/login" do
   user = User.find_by(email: params[:email], password: params[:password])
   if user
     session[:user_id] = user.id
@@ -20,17 +20,17 @@ post '/login' do
   end
 end
 
-post '/logout' do
+post "/logout" do
   session.clear
   redirect '/songs'
 end
 
-get '/signup' do
+get "/signup" do
   @user = User.new
   erb :'login/signup'
 end
 
-post '/signup' do
+post "/signup" do
   @user = User.new(
     email: params[:email],
     password: params[:password]
@@ -70,8 +70,8 @@ get '/songs/new' do
 end
 
 get '/songs/:id' do
+  @review = Review.new
   @song = Song.find(params[:id])
-  @other_songs = Song.where('author = ? AND id != ?', @song.author, @song.id)
   erb :'songs/show'
 end
 
@@ -88,22 +88,28 @@ post '/votes' do
   end
 end
 
-post '/reviews' do
+post "/reviews" do
+  binding.pry
   content = params[:content]
   song_id = params[:song_id].to_i
+  rating = params[:rating].to_i
   @review = Review.new(
     song_id: song_id,
     user_id: current_user.id,
+    rating: rating,
     content: content
   )
   if @review.save
-    redirect '/songs'
+    redirect "/songs/#{song_id}"
+  else
+    @song = Song.find(song_id)
+    erb :"songs/show"
   end
 end
 
-post '/delete-reviews' do
+post "/delete-reviews" do
   review_id = params[:review_id]
   song_id = params[:song_id]
   Review.find(review_id).destroy
-  redirect '/songs' 
+  redirect "/songs/#{song_id}"
 end

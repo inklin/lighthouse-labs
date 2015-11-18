@@ -8,4 +8,7 @@ class Song < ActiveRecord::Base
   validates :author, presence: true
   validates :user_id, presence: true
 
+  def other_songs
+    Song.where('author = ? AND id != ?', author, id)
+  end
 end
