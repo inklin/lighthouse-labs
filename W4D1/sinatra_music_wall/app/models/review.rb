@@ -12,8 +12,7 @@ class Review < ActiveRecord::Base
   private
 
   def user_cannot_review_song_twice
-    song_review = user.reviews.find_by(song_id: song.id)
-    if song_review
+    if Review.where("user_id = ? AND song_id = ?", user.id, song.id).take
       errors.add(:base, "cannot review the same song twice")
     end
   end

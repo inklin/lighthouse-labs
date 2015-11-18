@@ -1,6 +1,6 @@
 <div class="row">
-  <% if params[:vote_error] %>
-    <p class="bg-warning"><%= params[:vote_error] %></p>
+  <% if @errors %>
+    <p class="bg-warning"><%= @errors %></p>
   <% end %>
 </div>
 
@@ -11,11 +11,11 @@
     <div class="col-md-8">
       <a href="songs/<%= song.id %>"><%= song.title %></a> by <%= song.author %>
     </div>
-    <% if logged_in? %>
+    <% if @current_user %>
       <div class="col-md-2">
-        <form action="/votes" method="POST">
+        <form action="/songs" method="POST">
           <input type="hidden" name="song_id" value="<%= song.id %>" />
-          <% if current_user.votes.find_by(song_id: song.id).nil? %>
+          <% if can_vote?(@current_user.id, song.id) %>
             <input type="submit" value="Vote Up" class="btn btn-primary" />
           <% end %>
         </form>
@@ -24,6 +24,6 @@
   </div>
 <% end %>
 
-<% if logged_in? %>
+<% if @current_user %>
   <a href="/songs/new">Add a New Song</a>
 <% end %>

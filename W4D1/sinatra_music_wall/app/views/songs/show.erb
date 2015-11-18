@@ -17,59 +17,33 @@
   </div>
 <% end %>
 
-<% if logged_in? %>
+<% if current_user %>
   <% if current_user.reviews.find_by(song_id: @song.id).nil? %>
-    <div>
-      <h3>Review This Song:</h3>
-      <% if @review.errors.any? %>
-        <% @review.errors.full_messages.each do |message| %>
-          <p><%= message %></p>
-        <% end %>
-      <% end %>
-      <form action="/reviews" method="post">
-        <p>
-          <input type="hidden" name="song_id" value="<%= @song.id %>" />
-          <label for="rating">Rating</label>
-          <select name="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </p>
-        <p>
-          <label for="content">Content</label>
-          <textarea id="content" name="content" rows="5" columns="50" placeholder="Write a review"><%= @review.content %></textarea>
-        </p>
-        <button>Submit review</button>
-      </form>
-    </div>
+    <%= erb :'songs/_review_form' %>
   <% end %>
 <% else %>
-  <p>Sign up or login to review this song!</p>
+  <p><a href="/signup">Sign up</a> or login to review this song!</p>
 <% end %>
 
 <% if @song.reviews.any? %>
-  <div>
-    <h3>Reviews for <%= @song.title %></h3>
-    <% @song.reviews.each do |review| %>
-      <div>
-        <p>Rating: <%= review.rating %></p>
-        <p><%= review.content %></p>
-        <p>reviewed by <%= review.user.email %></p>
-        <% if logged_in? && review.user.id == current_user.id %>
-          <p>
-            <form action="/delete-reviews" method="post">
-              <input type="hidden" name="song_id" value="<%= @song.id %>" />
-              <input type="hidden" name="review_id" value="<%= review.id %>" />
-              <button>Delete Review</button>
-            </form>
-          </p>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <h3>Reviews for <%= @song.title %></h3>
+  <% @song.reviews.each do |review| %>
+    <div>
+      <p>Rating: <%= review.rating %></p>
+      <p><%= review.content %></p>
+      <p>reviewed by <%= review.user.email %></p>
+      <% if current_user && review.user.id == current_user.id %>
+        <p>
+          <form action="/songs/<%= @song.id %>/reviews/delete" method="post">
+            <input type="hidden" name="review_id" value="<%= review.id %>" />
+            <input type="hidden" name="song_id" value="<%= @song.id %>" />
+            <input type="hidden" name="_method" value="delete" />
+            <button>Delete Review</button>
+          </form>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
 
 <a href="/songs">Back to all Songs</a>

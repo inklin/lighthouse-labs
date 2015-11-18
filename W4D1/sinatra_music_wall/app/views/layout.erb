@@ -21,14 +21,12 @@
         <a href="/songs" class="navbar-brand">Song Wall</a>
       </div>
       <div class="navbar-collapse collapse">
-        <% if logged_in? %>
+        <% if current_user %>
           <p>You are signed in as <%= current_user.email %></p>
-          <form action="/logout" method="POST" class="navbar-form navbar-right">
-            <button class="btn btn-success" type="submit">Logout</button>
-          </form>
+          <a href="/logout">Logout</a>
         <% else %>
-          <% if params[:login_error] %>
-            <p><%= params[:login_error] %></p>
+          <% if @errors %>
+            <p><%= @errors %></p>
           <% end %>
           <form action="/login" method="POST" class="navbar-form navbar-right">
             <div class="form-group">
@@ -39,6 +37,7 @@
             </div>
             <button class="btn btn-success" type="submit">Login</button>
           </form>
+          <a href="/signup">Sign up</a>
         <% end %>
         </div>
       </div>
