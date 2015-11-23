@@ -1,4 +1,5 @@
 <%= link_to "Back to all posts", posts_path %>
-<h2><%= @post.title %>(<%= link_to "edit", edit_post_path(@post) %>)</h2>
+<h2><%= @post.title %>(<%= link_to "edit", edit_post_path(@post) %>,
+  <%= link_to "delete", post_path(@post), :method => :delete, :"data-confirm" => "You sure?" %>)</h2>
 <p><%= @post.text %></p>
 <small>- <%= @post.author %></small>
