@@ -24,6 +24,7 @@ function betInvalid(amount){
   return (amount < minBet || amount > maxBet) ? true : false;
 }
 
+// Returns a booleans, whether the user has less than specified amount
 function insufficientFunds(amount){
   return (amount > userBankroll) ? true : false;
 }
@@ -64,6 +65,10 @@ function subtractFromBankroll(amount){
   userBankroll -= amount;
 }
 
+function bankrollEmpty(){
+  return (userBankroll <= 0) ? true : false;
+}
+
 function updateUser(){
   alert("Your bankroll is: " + userBankroll);
 }
@@ -76,9 +81,6 @@ function runTurn(){
   updateUser();
 }
 
-function bankrollEmpty(){
-  return (userBankroll <= 0) ? true : false;
-}
 
 do {
  runTurn();
