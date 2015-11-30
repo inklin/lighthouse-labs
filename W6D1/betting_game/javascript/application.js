@@ -1,4 +1,5 @@
-var userBankroll = 100;
+var userBankroll = 20;
+var userBankrupt = false;
 var guessMin = 1;
 var guessMax = 10;
 
@@ -12,7 +13,7 @@ function getBet(){
   var bet = null;
   do {
     bet = prompt("Place a bet between $5 and $10");
-  } while (betInvalid(bet));
+  } while (betInvalid(bet) || insufficientFunds(bet));
   return bet;
 }
 
@@ -21,6 +22,10 @@ function betInvalid(amount){
   var minBet = 5;
   var maxBet = 10;
   return (amount < minBet || amount > maxBet) ? true : false;
+}
+
+function insufficientFunds(amount){
+  return (amount > userBankroll) ? true : false;
 }
 
 // Returns an integer, the guess input from the user
@@ -71,4 +76,11 @@ function runTurn(){
   updateUser();
 }
 
-runTurn();
+function bankrollEmpty(){
+  return (userBankroll <= 0) ? true : false;
+}
+
+do {
+ runTurn();
+ userBankrupt = bankrollEmpty();
+} while (!userBankrupt);
