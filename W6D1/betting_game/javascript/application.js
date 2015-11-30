@@ -1,11 +1,6 @@
-var userMoney = 100;
+var userBankroll = 100;
 var guessMin = 1;
 var guessMax = 10;
-var answer = null;
-
-function init(){
-  answer = getRandomNumber(guessMin, guessMax);
-}
 
 // Returns a random integer inclusive of max and min
 function getRandomNumber(min, max){
@@ -43,25 +38,37 @@ function guessInvalid(guess){
 }
 
 // Returns a boolean, checks the guess against the answer
-function checkGuess(guess){
+function checkGuess(guess, answer, betAmount){
   var difference = Math.abs(guess - answer);
   if (guess === answer) {
     alert("You are correct!");
+    addToBankroll(betAmount);
   } else if (difference === 1){
     alert("You were so close!");
   } else {
     alert("Boo, you were wrong");
+    subtractFromBankroll(betAmount);
   }
 }
 
-function runGame(){
-  var bet = getBet();
-  var guess = getGuess();
-  console.log("Answer is ", answer);
-  console.log("Bet is " , bet);
-  console.log("Guess is ", guess);
-  checkGuess(guess);
+function addToBankroll(amount){
+  userBankroll += amount;
 }
 
-init();
-runGame();
+function subtractFromBankroll(amount){
+  userBankroll -= amount;
+}
+
+function updateUser(){
+  alert("Your bankroll is: " + userBankroll);
+}
+
+function runTurn(){
+  var answer = getRandomNumber(guessMin, guessMax);
+  var bet = getBet();
+  var guess = getGuess();
+  checkGuess(guess, answer, bet);
+  updateUser();
+}
+
+runTurn();
