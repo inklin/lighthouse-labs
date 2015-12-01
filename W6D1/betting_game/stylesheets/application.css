@@ -1,79 +1,132 @@
 .card-1 {
   background: url("../images/1.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(10%, 0);
+  transition: transform 0.4s; }
+  .card-1:hover {
+    transform: translate(5%, 20px); }
+
+.card-1.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-2 {
   background: url("../images/2.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(20%, 0);
+  transition: transform 0.4s; }
+  .card-2:hover {
+    transform: translate(10%, 20px); }
+
+.card-2.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-3 {
   background: url("../images/3.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(30%, 0);
+  transition: transform 0.4s; }
+  .card-3:hover {
+    transform: translate(15%, 20px); }
+
+.card-3.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-4 {
   background: url("../images/4.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(40%, 0);
+  transition: transform 0.4s; }
+  .card-4:hover {
+    transform: translate(20%, 20px); }
+
+.card-4.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-5 {
   background: url("../images/5.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(50%, 0);
+  transition: transform 0.4s; }
+  .card-5:hover {
+    transform: translate(25%, 20px); }
+
+.card-5.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-6 {
   background: url("../images/6.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(60%, 0);
+  transition: transform 0.4s; }
+  .card-6:hover {
+    transform: translate(30%, 20px); }
+
+.card-6.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-7 {
   background: url("../images/7.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(70%, 0);
+  transition: transform 0.4s; }
+  .card-7:hover {
+    transform: translate(35%, 20px); }
+
+.card-7.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-8 {
   background: url("../images/8.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(80%, 0);
+  transition: transform 0.4s; }
+  .card-8:hover {
+    transform: translate(40%, 20px); }
+
+.card-8.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-9 {
   background: url("../images/9.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(90%, 0);
+  transition: transform 0.4s; }
+  .card-9:hover {
+    transform: translate(45%, 20px); }
+
+.card-9.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .card-10 {
   background: url("../images/10.png") no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  transform: translate(100%, 0);
+  transition: transform 0.4s; }
+  .card-10:hover {
+    transform: translate(50%, 20px); }
+
+.card-10.is-chosen {
+  border: 1px solid #FF0000;
+  transform: translate(50%, 220px); }
 
 .cards-container {
   position: relative; }
 
 .card {
-  position: relative;
-  border: 1px solid #00FF00;
+  position: absolute;
+  cursor: pointer;
+  border: 1px solid #000000;
   width: 150px;
   height: 210px;
   display: inline-block; }
-
-.chosen-card {
-  border: 1px solid #FF0000;
-  -webkit-animation: slide-down 0.6s forwards;
-  -moz-animation: slide-down 0.6s forwards;
-  -o-animation: slide-down 0.6s forwards;
-  animation: slide-down 0.6s forwards; }
-
-@-webkit-keyframes slide-down {
-  0% {
-    transform: translateY(0); }
-  100% {
-    transform: translateY(20px); } }
-@-moz-keyframes slide-down {
-  0% {
-    transform: translateY(0); }
-  100% {
-    transform: translateY(20px); } }
-@-o-keyframes slide-down {
-  0% {
-    transform: translateY(0); }
-  100% {
-    transform: translateY(20px); } }
-@keyframes slide-down {
-  0% {
-    transform: translateY(0); }
-  100% {
-    transform: translateY(20px); } }
 
 /*# sourceMappingURL=application.css.map */
