@@ -1,11 +1,50 @@
 .card {
   border: 1px solid #00FF00;
-  width: 200px;
-  padding: 50px;
-  margin: 10px;
-  display: inline-block;
-}
+  width: 150px;
+  height: 210px;
+  display: inline-block; }
 
 .chosen-card {
-  border: 1px solid #FF0000;
-}
+  border: 1px solid #FF0000; }
+
+.card-1 {
+  background: url("../images/1.png") no-repeat;
+  background-size: cover; }
+
+.card-2 {
+  background: url("../images/2.png") no-repeat;
+  background-size: cover; }
+
+.card-3 {
+  background: url("../images/3.png") no-repeat;
+  background-size: cover; }
+
+.card-4 {
+  background: url("../images/4.png") no-repeat;
+  background-size: cover; }
+
+.card-5 {
+  background: url("../images/5.png") no-repeat;
+  background-size: cover; }
+
+.card-6 {
+  background: url("../images/6.png") no-repeat;
+  background-size: cover; }
+
+.card-7 {
+  background: url("../images/7.png") no-repeat;
+  background-size: cover; }
+
+.card-8 {
+  background: url("../images/8.png") no-repeat;
+  background-size: cover; }
+
+.card-9 {
+  background: url("../images/9.png") no-repeat;
+  background-size: cover; }
+
+.card-10 {
+  background: url("../images/10.png") no-repeat;
+  background-size: cover; }
+
+/*# sourceMappingURL=application.css.map */
