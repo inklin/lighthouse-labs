@@ -1,0 +1,11 @@
+.card {
+  border: 1px solid #00FF00;
+  width: 200px;
+  padding: 50px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.chosen-card {
+  border: 1px solid #FF0000;
+}

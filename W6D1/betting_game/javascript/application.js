@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var userBankroll = 20;
+  var userBankroll = 100;
   var userBankrupt = false;
   var guessMin = 1;
   var guessMax = 10;
@@ -38,13 +38,15 @@ $(document).ready(function(){
   function checkGuess(guess, answer, betAmount){
     var difference = Math.abs(guess - answer);
     if (guess === answer) {
-      alert("You are correct!");
+      $("#result").text("You are correct!");
       addToBankroll(betAmount);
+      displayBalance();
     } else if (difference === 1){
-      alert("You were so close!");
+      $("#result").text("You were off by 1. You get to keep your money.");
     } else {
-      alert("Boo, you were wrong");
+      $("#result").text("Boo, you were wrong");
       subtractFromBankroll(betAmount);
+      displayBalance();
     }
   }
 
@@ -65,20 +67,24 @@ $(document).ready(function(){
   }
 
   function getInput(){
-    var bet = $("#bet").val();
-    var guess = $("#guess").val();
+    var bet = parseInt($("#bet").val());
     return { bet: bet, guess: guess };
   }
 
-  function runTurn(){
+  function placeBet(){
     var answer = getRandomNumber(guessMin, guessMax);
     var input = getInput();
     checkGuess(input.guess, answer, input.bet);
   }
 
   $("#place-bet").on("click", function(){
-    runTurn();
-    displayBalance();
+    placeBet();
+  });
+
+  $(".card").on("click", function(){
+    $(".chosen-card").removeClass("chosen-card");
+    $(this).addClass("chosen-card");
+    guess = parseInt($(this).attr("id"));
   });
 
 });

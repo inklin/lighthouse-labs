@@ -4,18 +4,32 @@
     <title>Betting Game</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
     <script src="javascript/application.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="stylesheets/application.css" />
   </head>
   <body>
-  <h1>Betting Game</h1>
-  <div>
-    <p id="user-bankroll"></p>
-  </div>
-  <div>
-    <label for="bet">Bet</label>
-    <input type="text" name="bet" id="bet" />
-    <label for="guess">Guess</label>
-    <input type="text" name="guess" id="guess" />
-    <button id="place-bet">Place Bet</button>
-  </div>
+    <h1>Betting Game</h1>
+    <div>
+      <p>$<span id="user-bankroll">100</span></p>
+    </div>
+    <div>
+      <p id="result"></p>
+    </div>
+    <div>
+      <label for="bet">Bet</label>
+      <input type="text" name="bet" id="bet" />
+      <button id="place-bet">Place Bet</button>
+    </div>
+    <div>
+      <div id="1" class="card">1</div>
+      <div id="2" class="card">2</div>
+      <div id="3" class="card">3</div>
+      <div id="4" class="card">4</div>
+      <div id="5" class="card">5</div>
+      <div id="6" class="card">6</div>
+      <div id="7" class="card">7</div>
+      <div id="8" class="card">8</div>
+      <div id="9" class="card">9</div>
+      <div id="10" class="card">10</div>
+    </div>
   </body>
 </html>
