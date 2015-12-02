@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/stylesheets/application.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.0/mustache.js"></script>
+  <script src="/javascript/application.js"></script>
+
+  <title></title>
+</head>
+<body>
+  <%= yield %>
+  <script id="contact-template" type="text/html">
+    <div id="contact-template">
+      <div class='contact' id='{{ id }}'>
+        <p>
+          <span>{{ firstname }}  {{ lastname }}</span>
+          <span> {{ email }} </span>
+        </p>
+        <p>
+          <span class='view-btn'>View</span> | <span class='delete-btn'>Delete</span>
+        </p>
+      </div>
+    </div>
+  </script>
+</body>
+</html>

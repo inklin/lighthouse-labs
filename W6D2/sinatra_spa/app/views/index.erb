@@ -1,0 +1,32 @@
+<h1>Home Page</h1>
+
+<div>
+  <button id="load-btn">Show Contacts</button>
+</div>
+
+<div>
+  <input id="search" name="search" />
+  <button id="search-btn">Search Contacts</button>
+</div>
+
+<div>
+  <form action="/contacts" id="contact-form">
+    <div>
+      <label for="firstname">First Name:</label>
+      <input id="firstname" name="contact[firstname]" />
+    </div>
+    <div>
+      <label for="lastname">Last Name:</label>
+      <input id="lastname" name="contact[lastname]" />
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" name="contact[email]" />
+    </div>
+    <button id="create-contact">Add Contact</button>
+  </form>
+</div>
+
+<div class="contacts-container">
+</div>
+
