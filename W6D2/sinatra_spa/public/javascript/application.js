@@ -1,5 +1,21 @@
 $(function() {
 
+  var clientid = "dcda051130e84d529283c5b1f6d66b73";
+  var access_token = "1768635.dcda051.d95b1f96666a4974a657374a1230386b";
+  var num_photos = 4;
+
+  var photos = $.ajax({
+    url: "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + access_token,
+    dataType: 'jsonp',
+    type: 'GET',
+    data: {client_id: clientid, count: num_photos},
+    success: function(data){
+      $.each(data.data, function(index, photo){
+        $("#photos-container").append("<img src='" + photo.images.thumbnail.url + "' />");
+      })
+    }
+  });
+
   var contactTemplate = $("#contact-template").html();
 
   var handler = {

@@ -21,17 +21,12 @@
 <body>
   <%= yield %>
   <script id="contact-template" type="text/html">
-    <div id="contact-template">
-      <div class='contact' id='{{ id }}'>
-        <p>
-          <span>{{ firstname }}  {{ lastname }}</span>
-          <span> {{ email }} </span>
-        </p>
-        <p>
-          <span class='view-btn'>View</span> | <span class='delete-btn'>Delete</span>
-        </p>
-      </div>
-    </div>
+    <tr>
+      <td>{{ firstname }}</td>
+      <td>{{ lastname }}</td>
+      <td> {{ email }} </td>
+      <td><button class='delete-btn'>Delete</button></td>
+    </tr>
   </script>
 </body>
 </html>
