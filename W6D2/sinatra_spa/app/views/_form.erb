@@ -1,7 +1,19 @@
-<form action="/contacts" id="contact-form" class="pure-form">
-    <legend>Create a new contact</legend>
-    <input id="firstname" name="contact[firstname]" placeholder="First Name" />
-    <input id="lastname" name="contact[lastname]" placeholder="Last Name" />
-    <input id="email" name="contact[email]" placeholder="Email" />
-    <button id="create-contact" class="pure-button pure-button-primary">Add Contact</button>
+<form action="/contacts" id="contact-form">
+  <div class="row">
+    <div class="three columns">
+      <label for="firstname">First Name</label>
+      <input id="firstname" name="contact[firstname]" placeholder="First Name" type="text">
+    </div>
+    <div class="three columns">
+      <label for="lastname">Last Name</label>
+      <input id="lastname" name="contact[lastname]" placeholder="Last Name" type="text">
+    </div>
+    <div class="three columns">
+      <label for="email">Email</label>
+      <input id="email" name="contact[email]" placeholder="Email" type="email" type="text">
+    </div>
+  </div>
+  <div class="row">
+    <button id="create-contact" class="button">Add</button>
+  </div>
 </form>

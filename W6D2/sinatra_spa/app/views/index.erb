@@ -1,18 +1,15 @@
 <h1>Lighthouse Loft</h1>
 
-<div id="photos-container" class="pure-g">
+<div id="photos-container">
 </div>
 
 <div>
-  <button id="load-btn" class="pure-button pure-button-primary">Show Contacts</button>
-</div>
-
-<div class="pure-form">
-  <input id="search-field" name="search" placeholder="Name or email" />
-</div>
-
-<div class="form-container">
+  <h5>Add New Contact</h5>
   <%= erb :_form %>
 </div>
 
-<%= erb :_table %>
+<div>
+  <h5>All Contacts</h5>
+  <input id="search-field" name="search" placeholder="Search Name or email" type="text" />
+  <%= erb :_table %>
+</div>
