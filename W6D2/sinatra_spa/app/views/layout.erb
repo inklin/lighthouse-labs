@@ -17,10 +17,11 @@
   </div>
   <script id="contact-template" type="text/html">
     <tr class="contact" id={{ id }}>
-      <td>{{ firstname }}</td>
-      <td>{{ lastname }}</td>
-      <td> {{ email }} </td>
-      <td><button class='delete-btn'>Delete</button></td>
+      <td contenteditable class="contact-firstname">{{ firstname }}</td>
+      <td contenteditable class="contact-lastname">{{ lastname }}</td>
+      <td contenteditable class="contact-email"> {{ email }} </td>
+      <td><button class='primary-btn save-btn'>Save</button></td>
+      <td><button class='primary-btn delete-btn'>Delete</button></td>
     </tr>
   </script>
 </body>

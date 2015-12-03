@@ -1,15 +1,14 @@
 $(function() {
 
-  var clientid = "dcda051130e84d529283c5b1f6d66b73";
+  // var clientid = "dcda051130e84d529283c5b1f6d66b73";
   var access_token = "4436356.1fb234f.f2c29a59d1a74989bc8fce8d6eac8e4b";
-  var num_photos = 5;
-  var instagram_tag = "vancouvermountains";
+  var num_photos = 4;
+  var instagram_tag = "lighthouse";
 
   var photos = $.ajax({
     url: "https://api.instagram.com/v1/tags/" + instagram_tag + "/media/recent?access_token=" + access_token,
     dataType: 'jsonp',
-    type: 'GET',
-    data: {client_id: clientid, count: num_photos},
+    data: { count: num_photos },
     success: function(data){
       $.each(data.data, function(index, photo){
         $("#photos-container").append("<img src='" + photo.images.thumbnail.url + "' />");
@@ -68,10 +67,13 @@ $(function() {
     $.post("/contacts", new_contact, handler.addNewContactToTable);
   });
   
+  // Get contact from button click
+  function getContact(button){
+    return button.closest(".contact");
+  }
   // Delete Contact
   $(".contacts-container").on("click", ".delete-btn", function(){
-    var btn = $(this);
-    var contact = btn.closest(".contact")
+    var contact = getContact($(this));
     var id = contact.attr("id");
 
     $.ajax({
@@ -82,5 +84,39 @@ $(function() {
       }
     })
   });
+
+  // Update Contact
+  $(".contacts-container").on("click", ".save-btn", function(){
+    var btn = $(this);
+    var contact = getContact(btn);
+    var id = contact.attr("id");
+
+    var params = {
+      contact: {
+      firstname: contact.find(".contact-firstname").text(),
+      lastname: contact.find(".contact-lastname").text(),
+      email: contact.find(".contact-email").text()
+      }
+    }
+
+
+    $.ajax({
+      url: "/contacts/" + id,
+      type: "PUT",
+      data: params,
+      success: function(){
+        saveButtonEffect(btn);
+      }
+    })
+  });
+
+  // Saved Button change
+  function saveButtonEffect(button){
+    button.addClass("highlighted-btn");
+    setTimeout(function(){
+      button.removeClass("highlighted-btn");
+    }, 2000);
+  }
+
 
 });

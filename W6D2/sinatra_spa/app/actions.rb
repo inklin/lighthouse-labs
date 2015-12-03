@@ -34,9 +34,17 @@ post '/contacts' do
   end
 end
 
+# Update Contact
+put '/contacts/:id' do
+  @contact = Contact.find(params[:id])
+  if @contact.update(request.params['contact'])
+    puts "Success"
+  end
+end
+
 # Delete
 delete '/contacts/:id' do
-  @contact = Contact.find(params[:id]);
+  @contact = Contact.find(params[:id])
   if @contact
     @contact.destroy
   else
