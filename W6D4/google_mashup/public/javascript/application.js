@@ -16,12 +16,32 @@ function initMap() {
   var myMarker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: "English Bay Beach!",
+    title: 'English Bay Beach!',
     draggable: true,
     animation: google.maps.Animation.DROP,
   })
+  var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">English Bay Beach</h1>'+
+    '<div id="bodyContent" class="body-content">'+
+    '<p><b>English Bay Beach</b>, also called <b>First Beach</b>, is the most' +
+    'populated beach area in Vancouver\' downtown area. The Stanley Park Seawall,' +
+    ' a popular running and biking route, runs along the east side of the beach.</p>' +
+    '<p>Attribution: English Bay Beach, <a href="https://en.wikipedia.org/wiki/English_Bay_(Vancouver)">'+
+    'English Bay (Vancouver) - Wikipedia</a> '+
+    '(last visited Dec 3, 2015).</p>'+
+    '</div>'+
+    '</div>';
 
-  myMarker.addListener("click", toggleBounce);
+  var infoWindow = new google.maps.InfoWindow({
+    content: contentString
+  })
+
+  myMarker.addListener("click", function(){
+    toggleBounce();
+    infoWindow.open(map, myMarker);
+  });
 
   function toggleBounce() {
     if (myMarker.getAnimation() !== null) {
