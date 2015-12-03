@@ -16,7 +16,18 @@ function initMap() {
   var myMarker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: "English Bay Beach!"
+    title: "English Bay Beach!",
+    draggable: true,
+    animation: google.maps.Animation.DROP,
   })
 
+  myMarker.addListener("click", toggleBounce);
+
+  function toggleBounce() {
+    if (myMarker.getAnimation() !== null) {
+      myMarker.setAnimation(null);
+    } else {
+      myMarker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  }
 }
