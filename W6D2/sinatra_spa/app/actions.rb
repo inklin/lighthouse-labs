@@ -5,11 +5,7 @@ end
 
 # Read
 get '/contacts' do
-  if params[:search]
-    Contact.search(params[:search]).to_json
-  else
-    Contact.all.to_json
-  end
+  Contact.all.to_json
 end
 
 get '/contacts/:id' do
@@ -18,6 +14,13 @@ get '/contacts/:id' do
     @contact.to_json
   else
     status 404
+  end
+end
+
+# Search
+get '/contacts/search' do
+  if params[:search]
+    Contact.search(params[:search]).to_json
   end
 end
 
