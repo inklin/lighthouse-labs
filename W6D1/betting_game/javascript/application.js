@@ -3,6 +3,21 @@ $(document).ready(function(){
   var userBankrupt = false;
   var guessMin = 1;
   var guessMax = 10;
+  var answer = null;
+
+  var cardNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  for (var i = 0, len = cardNumbers.length; i < len; i++){
+    var cardNumber = cardNumbers[i];
+    $("#card" + cardNumber).addClass("card-" + cardNumber).addClass("guess-card");
+  }
+
+  function createAnswerCard(newAnswer){
+    var answerCard = $("#answer-card");
+    answerCard.removeClass("card-" + answer);
+    $("#answer-card").addClass("card-" + newAnswer);
+    answer = newAnswer;
+  }
 
   // Returns a random integer inclusive of max and min
   function getRandomNumber(min, max){
@@ -20,38 +35,29 @@ $(document).ready(function(){
     return (amount > userBankroll) ? true : false;
   }
 
-  // Returns an integer, the guess input from the user
-  function getGuess(){
-    var guess = null;
-    do {
-      guess = prompt("Guess a number between 1-10");
-    } while (guessInvalid(guess));
-    return guess;
-  }
-
   // Returns true or false, whether the guess input is valid
   function guessInvalid(guess){
     return (guess < guessMin || guess > guessMax) ? true : false;
   }
 
   // Returns a boolean, checks the guess against the answer
-  function checkGuess(guess, answer, betAmount){
+  function checkGuess(guess, betAmount){
     var difference = Math.abs(guess - answer);
     if (guess === answer) {
-      $("#result").text("You are correct!");
+      $("#instruction").text("You are correct!");
       addToBankroll(betAmount);
       displayBalance();
     } else if (difference === 1){
-      $("#result").text("You were off by 1. You get to keep your money.");
+      $("#instruction").text("You were off by 1. You get to keep your money.");
     } else {
-      $("#result").text("Boo, you were wrong");
+      $("#instruction").text("Boo, you were wrong");
       subtractFromBankroll(betAmount);
       displayBalance();
     }
   }
 
   function addToBankroll(amount){
-    userBankroll += amount;
+    userBankroll += (amount * 2);
   }
 
   function subtractFromBankroll(amount){
@@ -72,19 +78,38 @@ $(document).ready(function(){
   }
 
   function placeBet(){
-    var answer = getRandomNumber(guessMin, guessMax);
     var input = getInput();
-    checkGuess(input.guess, answer, input.bet);
+    checkGuess(input.guess, input.bet);
+    showAnswer();
+    setTimeout(function(){
+      setupBet();
+    }, 1500);
   }
+
+  function showAnswer(){
+    $(".flip-container").addClass("flipped");
+  }
+
+  function setupBet(){
+    $(".card.is-chosen").removeClass("is-chosen");
+    $(".flip-container").removeClass("flipped");
+    $("#instruction").text("Pick a card!");
+    guess = null;
+    var newAnswer = getRandomNumber(guessMin, guessMax);
+    createAnswerCard(newAnswer);
+  }
+
+  setupBet();
 
   $("#place-bet").on("click", function(){
     placeBet();
   });
 
-  $(".card").on("click", function(){
-    $(".chosen-card").removeClass("chosen-card");
-    $(this).addClass("chosen-card");
-    guess = parseInt($(this).attr("id"));
+  $(".guess-card").on("click", function(){
+    $(this).addClass("is-chosen");
+    var guessString = $(this).attr("id").replace("card", '');
+    guess = parseInt(guessString);
+    $("#instruction").text("Place a bet amount.")
   });
 
 });

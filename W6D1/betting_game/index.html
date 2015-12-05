@@ -8,28 +8,42 @@
   </head>
   <body>
     <h1>Betting Game</h1>
+    <div class="answer-container">
+
+      <div class="flip-container">
+        <div class="flipper">
+          <div class="card front"></div>
+          <div class="card back" id="answer-card"></div>
+        </div>
+      </div>
+
+    </div>
     <div>
       <p>$<span id="user-bankroll">100</span></p>
     </div>
     <div>
-      <p id="result"></p>
+      <p id="instruction"></p>
     </div>
     <div>
       <label for="bet">Bet</label>
       <input type="text" name="bet" id="bet" />
       <button id="place-bet">Place Bet</button>
     </div>
-    <div>
-      <div id="1" class="card"></div>
-      <div id="2" class="card"></div>
-      <div id="3" class="card"></div>
-      <div id="4" class="card"></div>
-      <div id="5" class="card"></div>
-      <div id="6" class="card"></div>
-      <div id="7" class="card"></div>
-      <div id="8" class="card"></div>
-      <div id="9" class="card"></div>
-      <div id="10" class="card"></div>
+    <div class="bankroll-container">
+    </div>
+    <div class="bet-container">
+    </div>
+    <div class="cards-container">
+      <div id="card1" class="card"></div>
+      <div id="card2" class="card"></div>
+      <div id="card3" class="card"></div>
+      <div id="card4" class="card"></div>
+      <div id="card5" class="card"></div>
+      <div id="card6" class="card"></div>
+      <div id="card7" class="card"></div>
+      <div id="card8" class="card"></div>
+      <div id="card9" class="card"></div>
+      <div id="card10" class="card"></div>
     </div>
   </body>
 </html>

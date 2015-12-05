@@ -1,125 +1,92 @@
 .card-1 {
   background: url("../images/1.png") no-repeat;
-  background-size: cover;
-  transform: translate(15%, 0);
-  transition: transform 0.4s; }
-  .card-1:hover {
-    transform: translate(5%, 20px); }
-
-.card-1.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-1.guess-card {
+    transform: translate(16%, 0);
+    transition: transform 0.4s; }
+    .card-1.guess-card:hover {
+      transform: translate(6%, 20px); }
 
 .card-2 {
   background: url("../images/2.png") no-repeat;
-  background-size: cover;
-  transform: translate(30%, 0);
-  transition: transform 0.4s; }
-  .card-2:hover {
-    transform: translate(10%, 20px); }
-
-.card-2.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-2.guess-card {
+    transform: translate(32%, 0);
+    transition: transform 0.4s; }
+    .card-2.guess-card:hover {
+      transform: translate(22%, 20px); }
 
 .card-3 {
   background: url("../images/3.png") no-repeat;
-  background-size: cover;
-  transform: translate(45%, 0);
-  transition: transform 0.4s; }
-  .card-3:hover {
-    transform: translate(15%, 20px); }
-
-.card-3.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-3.guess-card {
+    transform: translate(48%, 0);
+    transition: transform 0.4s; }
+    .card-3.guess-card:hover {
+      transform: translate(38%, 20px); }
 
 .card-4 {
   background: url("../images/4.png") no-repeat;
-  background-size: cover;
-  transform: translate(60%, 0);
-  transition: transform 0.4s; }
-  .card-4:hover {
-    transform: translate(20%, 20px); }
-
-.card-4.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-4.guess-card {
+    transform: translate(64%, 0);
+    transition: transform 0.4s; }
+    .card-4.guess-card:hover {
+      transform: translate(54%, 20px); }
 
 .card-5 {
   background: url("../images/5.png") no-repeat;
-  background-size: cover;
-  transform: translate(75%, 0);
-  transition: transform 0.4s; }
-  .card-5:hover {
-    transform: translate(25%, 20px); }
-
-.card-5.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-5.guess-card {
+    transform: translate(80%, 0);
+    transition: transform 0.4s; }
+    .card-5.guess-card:hover {
+      transform: translate(70%, 20px); }
 
 .card-6 {
   background: url("../images/6.png") no-repeat;
-  background-size: cover;
-  transform: translate(90%, 0);
-  transition: transform 0.4s; }
-  .card-6:hover {
-    transform: translate(30%, 20px); }
-
-.card-6.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-6.guess-card {
+    transform: translate(96%, 0);
+    transition: transform 0.4s; }
+    .card-6.guess-card:hover {
+      transform: translate(86%, 20px); }
 
 .card-7 {
   background: url("../images/7.png") no-repeat;
-  background-size: cover;
-  transform: translate(105%, 0);
-  transition: transform 0.4s; }
-  .card-7:hover {
-    transform: translate(35%, 20px); }
-
-.card-7.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-7.guess-card {
+    transform: translate(112%, 0);
+    transition: transform 0.4s; }
+    .card-7.guess-card:hover {
+      transform: translate(102%, 20px); }
 
 .card-8 {
   background: url("../images/8.png") no-repeat;
-  background-size: cover;
-  transform: translate(120%, 0);
-  transition: transform 0.4s; }
-  .card-8:hover {
-    transform: translate(40%, 20px); }
-
-.card-8.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-8.guess-card {
+    transform: translate(128%, 0);
+    transition: transform 0.4s; }
+    .card-8.guess-card:hover {
+      transform: translate(118%, 20px); }
 
 .card-9 {
   background: url("../images/9.png") no-repeat;
-  background-size: cover;
-  transform: translate(135%, 0);
-  transition: transform 0.4s; }
-  .card-9:hover {
-    transform: translate(45%, 20px); }
-
-.card-9.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
+  background-size: cover; }
+  .card-9.guess-card {
+    transform: translate(144%, 0);
+    transition: transform 0.4s; }
+    .card-9.guess-card:hover {
+      transform: translate(134%, 20px); }
 
 .card-10 {
   background: url("../images/10.png") no-repeat;
-  background-size: cover;
-  transform: translate(150%, 0);
-  transition: transform 0.4s; }
-  .card-10:hover {
-    transform: translate(50%, 20px); }
-
-.card-10.is-chosen {
-  border: 1px solid #FF0000;
-  transform: translate(50%, 220px); }
-
-.cards-container {
-  position: relative; }
+  background-size: cover; }
+  .card-10.guess-card {
+    transform: translate(160%, 0);
+    transition: transform 0.4s; }
+    .card-10.guess-card:hover {
+      transform: translate(150%, 20px); }
 
 .card {
   position: absolute;
@@ -129,5 +96,33 @@
   width: 150px;
   height: 210px;
   display: inline-block; }
+  .card.is-chosen {
+    border: 1px solid #FF0000;
+    transform: translate(60%, 220px); }
+    .card.is-chosen:hover {
+      transform: translate(60%, 220px); }
+
+.flip-container {
+  perspective: 1000;
+  width: 150px;
+  height: 210px; }
+  .flip-container.flipped .flipper {
+    transform: rotateY(180deg); }
+
+/* flip speed goes here */
+.flipper {
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative; }
+  .flipper .front, .flipper .back {
+    cursor: auto;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0; }
+  .flipper .front {
+    background: url("../images/card_back.jpg") no-repeat;
+    background-size: contain; }
+  .flipper .back {
+    transform: rotateY(180deg); }
 
 /*# sourceMappingURL=application.css.map */
