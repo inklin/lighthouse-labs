@@ -24,24 +24,8 @@ $(document).ready(function(){
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  // Returns true or false, whether the input is valid
-  function betInvalid(amount){
-    var minBet = 5, maxBet = 10;
-    return (amount < minBet || amount > maxBet) ? true : false;
-  }
-
-  // Returns a booleans, whether the user has less than specified amount
-  function insufficientFunds(amount){
-    return (amount > userBankroll) ? true : false;
-  }
-
-  // Returns true or false, whether the guess input is valid
-  function guessInvalid(guess){
-    return (guess < guessMin || guess > guessMax) ? true : false;
-  }
-
   // Returns a boolean, checks the guess against the answer
-  function checkGuess(guess, betAmount){
+  function checkGuess(guess, betAmount) {
     var difference = Math.abs(guess - answer);
     if (guess === answer) {
       $("#instruction").text("You are correct!");
@@ -56,41 +40,45 @@ $(document).ready(function(){
     }
   }
 
-  function addToBankroll(amount){
-    userBankroll += (amount * 2);
+  function addToBankroll(amount) {
+    userBankroll += (amount * 7);
   }
 
-  function subtractFromBankroll(amount){
+  function subtractFromBankroll(amount) {
     userBankroll -= amount;
   }
 
-  function bankrollEmpty(){
+  function bankrollEmpty() {
     return (userBankroll <= 0) ? true : false;
   }
 
-  function displayBalance(){
+  function displayBalance() {
     $('#user-bankroll').text(userBankroll);
   }
 
-  function getInput(){
+  function getInput() {
     var bet = parseInt($("#bet").val());
     return { bet: bet, guess: guess };
   }
 
-  function placeBet(){
-    var input = getInput();
-    checkGuess(input.guess, input.bet);
-    showAnswer();
-    setTimeout(function(){
-      setupBet();
-    }, 1500);
-  }
-
-  function showAnswer(){
+  function showAnswer() {
     $(".flip-container").addClass("flipped");
   }
 
-  function setupBet(){
+  // Returns a booleans, whether the user has less than specified amount
+  function sufficientFunds(bet) {
+    return (bet <= userBankroll) ? true : false;
+  }
+
+  function betValid(bet) {
+    return (bet > 0) ? true : false;
+  }
+
+  function guessValid(guess) {
+    return guess && (guess <= guessMax) && (guess >= guessMin);
+  }
+
+  function setupBet() {
     $(".card.is-chosen").removeClass("is-chosen");
     $(".flip-container").removeClass("flipped");
     $("#instruction").text("Pick a card!");
@@ -99,13 +87,42 @@ $(document).ready(function(){
     createAnswerCard(newAnswer);
   }
 
+  function validateInputs() {
+    var input = getInput();
+    var errors = [];
+
+    if (betValid(input.bet) && sufficientFunds(input.bet) && guessValid(input.guess)) {
+      return true;
+    }
+
+    if (!betValid(input.bet)) {
+      errors.push("Bets must be greater than 0.");
+    }
+    if (!sufficientFunds(input.bet)) {
+      errors.push("You have insufficient funds to place that bet.");
+    }
+    if (!guessValid(input.guess)) {
+      errors.push("You have not guessed a number.");
+    }
+
+    return errors;
+  }
+
+  function placeBet(input) {
+    checkGuess(input.guess, input.bet);
+    showAnswer();
+    setTimeout(function(){
+      setupBet();
+    }, 1500);
+  }
+
   setupBet();
 
   $("#place-bet").on("click", function(){
     placeBet();
   });
 
-  $(".guess-card").on("click", function(){
+  $(".guess-card").on("click", function() {
     $(this).addClass("is-chosen");
     var guessString = $(this).attr("id").replace("card", '');
     guess = parseInt(guessString);
