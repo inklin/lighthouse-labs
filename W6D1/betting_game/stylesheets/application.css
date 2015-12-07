@@ -127,8 +127,6 @@ body {
   height: 210px; }
   .flip-container.flipped .flipper {
     transform: rotateY(180deg); }
-  .flip-container:hover .flipper {
-    transform: rotateY(180deg); }
 
 /* flip speed goes here */
 .flipper {
