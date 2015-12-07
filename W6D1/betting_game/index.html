@@ -1,38 +1,42 @@
 <!Doctype html>
 <html>
   <head>
-    <title>Betting Game</title>
+    <title>Number Casino</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
     <script src="javascript/application.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700" rel="stylesheet" type='text/css'>
     <link rel="stylesheet" href="stylesheets/application.css" />
   </head>
   <body>
-    <h1>Betting Game</h1>
-    <div class="answer-container">
+    <div class="bankroll-container">
+      <p>Bankroll: $ <span id="bankroll">100</span></p>
+    </div>
 
+    <div class="answer-container">
       <div class="flip-container">
         <div class="flipper">
           <div class="card front"></div>
           <div class="card back" id="answer-card"></div>
         </div>
       </div>
+    </div>
 
-    </div>
-    <div>
-      <p>$<span id="user-bankroll">100</span></p>
-    </div>
     <div>
       <p id="instruction"></p>
     </div>
-    <div>
-      <label for="bet">Bet</label>
+
+    <div class="game-info">
+      <h2>Number Casino</h2>
+      <p>Exact number pays 7 to 1</p>
+    </div>
+
+    <div class="bet-container">
+      <label for="bet">Bet Amount $</label>
       <input type="text" name="bet" id="bet" />
       <button id="place-bet">Place Bet</button>
+      <button id="add-money">Add money</button>
     </div>
-    <div class="bankroll-container">
-    </div>
-    <div class="bet-container">
-    </div>
+
     <div class="cards-container">
       <div id="card1" class="card"></div>
       <div id="card2" class="card"></div>
@@ -44,6 +48,7 @@
       <div id="card8" class="card"></div>
       <div id="card9" class="card"></div>
       <div id="card10" class="card"></div>
+      <div class="card-placearea"></div>
     </div>
   </body>
 </html>
