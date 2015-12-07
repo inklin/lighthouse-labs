@@ -132,6 +132,14 @@ $(document).ready(function(){
     $(".flip-container").removeClass("flipped");
   }
 
+  function resetGame() {
+    userBankroll = 100;
+    guess = null;
+    console.log("resetting");
+    $(".is-chosen").removeClass("is-chosen");
+    $("#bankroll").text(100);
+  }
+
   $("#place-bet").on("click", function(){
     var input = getInput();
     var inputValid = validateInputs(input);
@@ -151,10 +159,8 @@ $(document).ready(function(){
   });
 
   $("#add-money").on("click", function() {
-    userBankroll = 100;
-    $("#bankroll").text(100);
     $(this).hide();
-    $("#instruction").text("Thanks for adding $100. Pick a card!");
+    resetGame();
     setupBet();
   });
 
