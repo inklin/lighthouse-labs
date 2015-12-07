@@ -4,6 +4,7 @@ $(document).ready(function(){
   var guessMin = 1;
   var guessMax = 10;
   var answer = null;
+  var bettingDisabled = true;
 
   var cardNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -66,7 +67,7 @@ $(document).ready(function(){
   }
 
   function betValid(bet) {
-    return (bet > 0) ? true : false;
+    return (bet >= 1) ? true : false;
   }
 
   function guessValid(guess) {
@@ -78,6 +79,7 @@ $(document).ready(function(){
     guess = null;
     var newAnswer = getRandomNumber(guessMin, guessMax);
     createAnswerCard(newAnswer);
+    bettingDisabled = false;
   }
 
   function getInput() {
@@ -93,7 +95,7 @@ $(document).ready(function(){
     }
 
     if (!betValid(input.bet)) {
-      errors.push("Bets must be greater than 0.");
+      errors.push("Minimum bet is $1.");
     } else if (!sufficientFunds(input.bet)) {
       errors.push("You have insufficient funds to place that bet.");
     }
@@ -134,7 +136,8 @@ $(document).ready(function(){
     var input = getInput();
     var inputValid = validateInputs(input);
 
-    if (inputValid){
+    if (inputValid && !bettingDisabled){
+      bettingDisabled = true;
       placeBet(input);
     }
   });
@@ -152,6 +155,7 @@ $(document).ready(function(){
     $("#bankroll").text(100);
     $(this).hide();
     $("#instruction").text("Thanks for adding $100. Pick a card!");
+    setupBet();
   });
 
   setupBet();
