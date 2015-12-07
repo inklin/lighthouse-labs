@@ -61,7 +61,7 @@ $(document).ready(function(){
     $(".flip-container").addClass("flipped");
   }
 
-  // Returns a booleans, whether the user has less than specified amount
+  // Returns a boolean, whether the user has less than specified amount
   function sufficientFunds(bet) {
     return (bet <= userBankroll) ? true : false;
   }
@@ -151,11 +151,13 @@ $(document).ready(function(){
   });
 
   $(".guess-card").on("click", function() {
-    $(".is-chosen").removeClass("is-chosen");
-    $(this).addClass("is-chosen");
-    var guessString = $(this).attr("id").replace("card", '');
-    guess = parseInt(guessString);
-    $("#instruction").text("Place your bet.")
+    if (!bettingDisabled) {
+      $(".is-chosen").removeClass("is-chosen");
+      $(this).addClass("is-chosen");
+      var guessString = $(this).attr("id").replace("card", '');
+      guess = parseInt(guessString);
+      $("#instruction").text("Place your bet.")
+    }
   });
 
   $("#add-money").on("click", function() {
