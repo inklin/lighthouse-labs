@@ -19,5 +19,5 @@ var tr = through(function (buf, _, next) {
     this.push(buf.toString().toUpperCase());
     next();
 });
-process.stdin.pipe(tr).pipe(process.stdout);
 
+process.stdin.pipe(tr).pipe(process.stdout);
