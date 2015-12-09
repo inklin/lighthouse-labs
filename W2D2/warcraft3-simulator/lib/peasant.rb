@@ -1,5 +1,4 @@
 class Peasant < Unit
-  
   FOOD_COST = 5
   GOLD_COST = 90
 
