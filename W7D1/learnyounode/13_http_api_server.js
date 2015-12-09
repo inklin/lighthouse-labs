@@ -51,7 +51,7 @@ server.listen(port);
 //   var time = new Date(parsedUrl.query.iso)
 //   var result
 
-//   if (/^\/api\/parsetime/.test(req.url))
+//   if (/sub^\/api\/parsetime/.test(req.url))
 //     result = parsetime(time)
 //   else if (/^\/api\/unixtime/.test(req.url))
 //     result = unixtime(time)
