@@ -54,6 +54,19 @@ var map;
 var pano;
 var markers = [];
 var firstWonder = { lat: 27.173168, lng: 78.042068 };
+  
+function addWonderList(){
+  var $list = $("<ul></ul>");
+  wonders.forEach(function(wonder){
+    var listItem = "<li>" +
+                   "<h4>" + wonder.name + "</h4>" +
+                   wonder.description +
+                   "</li>";
+    $list.append(listItem);
+  });
+
+  $("#menu").append($list);
+}
 
 function initMap() {
   // Set up the map
@@ -99,6 +112,9 @@ function initMap() {
   })
 
   addWonderList();
+  $("#menu > ul li").on("click", function(){
+    console.log(this);
+  });
 }
 
 function processSVData(data, status){
@@ -112,11 +128,4 @@ function processSVData(data, status){
   }
 }
 
-function addWonderList(){
-  var $list = $("<ul></ul>");
-  wonders.forEach(function(wonder){
-    $list.append("<li>" + wonder.description + "</li>");
-  });
-  $("#menu").append($list);
-}
 
