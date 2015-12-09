@@ -16,7 +16,7 @@
     <%= yield %>
   </div>
   <script id="contact-template" type="text/html">
-    <tr class="contact" id={{ id }}>
+    <tr class="contact" data-contactid={{ id }}>
       <td contenteditable class="contact-firstname">{{ firstname }}</td>
       <td contenteditable class="contact-lastname">{{ lastname }}</td>
       <td contenteditable class="contact-email"> {{ email }} </td>

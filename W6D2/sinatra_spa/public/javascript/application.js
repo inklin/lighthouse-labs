@@ -1,6 +1,5 @@
 $(function() {
 
-  // var clientid = "dcda051130e84d529283c5b1f6d66b73";
   var access_token = "4436356.1fb234f.f2c29a59d1a74989bc8fce8d6eac8e4b";
   var num_photos = 4;
   var instagram_tag = "lighthouse";
@@ -63,7 +62,6 @@ $(function() {
   $("#contact-form").on("submit", function(evt){
     evt.preventDefault();
     var new_contact = $(this).serialize();
-    console.log("adding contactTemplate");
     $.post("/contacts", new_contact, handler.addNewContactToTable);
   });
   
@@ -74,7 +72,7 @@ $(function() {
   // Delete Contact
   $(".contacts-container").on("click", ".delete-btn", function(){
     var contact = getContact($(this));
-    var id = contact.attr("id");
+    var id = contact.data("contactid");
 
     $.ajax({
       url: "/contacts/" + id,
@@ -89,7 +87,7 @@ $(function() {
   $(".contacts-container").on("click", ".save-btn", function(){
     var btn = $(this);
     var contact = getContact(btn);
-    var id = contact.attr("id");
+    var id = contact.data("contactid");
 
     var params = {
       contact: {
